@@ -1,0 +1,1653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RAC ExamPrep — Practice Sets 46–51</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0f1117;
+    --bg2: #1a1d27;
+    --bg3: #22263a;
+    --card: #1e2130;
+    --border: #2e3350;
+    --accent: #4f8ef7;
+    --accent2: #6c63ff;
+    --green: #22c55e;
+    --red: #ef4444;
+    --orange: #f97316;
+    --yellow: #eab308;
+    --text: #f0f2ff;
+    --text2: #8b92b4;
+    --text3: #555e80;
+    --radius: 12px;
+    --radius-sm: 8px;
+    --shadow: 0 4px 24px rgba(0,0,0,0.4);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+
+  /* ─── SCROLLBAR ─── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg2); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  /* ─── PAGES ─── */
+  .page { display: none; min-height: 100vh; }
+  .page.active { display: block; }
+
+  /* ══════════════════════════════
+     HOME PAGE
+  ══════════════════════════════ */
+  #homePage {
+    background: var(--bg);
+    position: relative;
+    overflow: hidden;
+  }
+  .home-bg {
+    position: fixed;
+    top: -200px; left: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(79,142,247,0.12) 0%, transparent 70%);
+    pointer-events: none;
+    animation: pulse 8s ease-in-out infinite;
+  }
+  .home-bg2 {
+    position: fixed;
+    bottom: -150px; right: -150px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(108,99,255,0.1) 0%, transparent 70%);
+    pointer-events: none;
+    animation: pulse 10s ease-in-out infinite reverse;
+  }
+  @keyframes pulse { 0%,100% { transform: scale(1); opacity: 0.7; } 50% { transform: scale(1.1); opacity: 1; } }
+
+  .home-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 2rem;
+    border-bottom: 1px solid var(--border);
+    background: rgba(15,17,23,0.8);
+    backdrop-filter: blur(12px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .logo {
+    font-size: 1.25rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #4f8ef7, #6c63ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.5px;
+  }
+  .logo span { color: var(--text); -webkit-text-fill-color: var(--text); }
+
+  .home-hero {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 5rem 2rem 3rem;
+    text-align: center;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(79,142,247,0.12);
+    border: 1px solid rgba(79,142,247,0.3);
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .hero-badge::before { content: '●'; font-size: 8px; animation: blink 1.5s infinite; }
+  @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+  .hero-title {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -1px;
+    margin-bottom: 1rem;
+  }
+  .hero-title .hl { background: linear-gradient(135deg, #4f8ef7, #6c63ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .hero-sub {
+    font-size: 1.05rem;
+    color: var(--text2);
+    max-width: 520px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.7;
+  }
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+  }
+  .stat-item { text-align: center; }
+  .stat-num { font-size: 1.8rem; font-weight: 800; color: var(--accent); font-family: 'JetBrains Mono', monospace; }
+  .stat-label { font-size: 12px; color: var(--text3); margin-top: 2px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  /* ─── SET CARDS ─── */
+  .sets-grid {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 2rem 4rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.25rem;
+  }
+  .set-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .set-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .set-card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 8px 32px rgba(79,142,247,0.15); }
+  .set-card:hover::before { opacity: 1; }
+  .card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
+  .card-num {
+    width: 44px; height: 44px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    border-radius: var(--radius-sm);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800;
+    font-size: 1.1rem;
+  }
+  .card-badge {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: rgba(34,197,94,0.1);
+    color: var(--green);
+    border: 1px solid rgba(34,197,94,0.2);
+  }
+  .card-badge.attempted { background: rgba(79,142,247,0.1); color: var(--accent); border-color: rgba(79,142,247,0.2); }
+  .card-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 4px; }
+  .card-sub { font-size: 13px; color: var(--text2); }
+  .card-meta { display: flex; gap: 1rem; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border); }
+  .meta-item { font-size: 12px; color: var(--text3); display: flex; align-items: center; gap: 4px; }
+  .meta-item strong { color: var(--text2); font-weight: 600; }
+  .card-score {
+    font-size: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--green);
+    font-weight: 500;
+    margin-top: 8px;
+  }
+  .btn-start {
+    width: 100%;
+    margin-top: 1rem;
+    padding: 10px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    border: none;
+    border-radius: var(--radius-sm);
+    color: white;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.1s;
+    letter-spacing: 0.3px;
+  }
+  .btn-start:hover { opacity: 0.9; }
+  .btn-start:active { transform: scale(0.98); }
+
+  /* ══════════════════════════════
+     EXAM PAGE
+  ══════════════════════════════ */
+  #examPage { background: var(--bg); }
+
+  .exam-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.9rem 1.5rem;
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .exam-title-area { display: flex; align-items: center; gap: 12px; }
+  .btn-back {
+    width: 36px; height: 36px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text2);
+    font-size: 18px;
+    transition: all 0.15s;
+  }
+  .btn-back:hover { background: var(--border); color: var(--text); }
+  .exam-name { font-weight: 700; font-size: 1rem; }
+  .exam-sub { font-size: 12px; color: var(--text3); }
+
+  .timer-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 7px 14px;
+  }
+  .timer-icon { font-size: 14px; }
+  .timer-display {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1rem;
+    font-weight: 500;
+    min-width: 70px;
+    text-align: center;
+  }
+  .timer-display.warn { color: var(--orange); }
+  .timer-display.danger { color: var(--red); animation: timerBlink 0.8s infinite; }
+  @keyframes timerBlink { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+  .exam-progress-bar {
+    height: 3px;
+    background: var(--border);
+  }
+  .exam-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    transition: width 0.3s;
+  }
+
+  .exam-body {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 0;
+    min-height: calc(100vh - 120px);
+  }
+
+  /* ─── QUESTION AREA ─── */
+  .question-area {
+    padding: 2rem;
+    max-width: 720px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .q-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; }
+  .q-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text3);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .q-marks {
+    font-size: 12px;
+    color: var(--green);
+    background: rgba(34,197,94,0.1);
+    border: 1px solid rgba(34,197,94,0.2);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-weight: 600;
+  }
+  .q-text-box {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+    line-height: 1.7;
+    font-weight: 500;
+  }
+  .q-number-tag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px; height: 28px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-right: 10px;
+    flex-shrink: 0;
+    vertical-align: middle;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .options-list { display: flex; flex-direction: column; gap: 10px; }
+  .opt-btn {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 16px;
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: all 0.15s;
+    text-align: left;
+    width: 100%;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: var(--text);
+  }
+  .opt-btn:hover:not(:disabled) { border-color: var(--accent); background: rgba(79,142,247,0.05); }
+  .opt-btn.selected { border-color: var(--accent); background: rgba(79,142,247,0.08); }
+  .opt-btn.correct { border-color: var(--green); background: rgba(34,197,94,0.08); }
+  .opt-btn.wrong { border-color: var(--red); background: rgba(239,68,68,0.08); }
+  .opt-btn.show-ans { border-color: var(--green); background: rgba(34,197,94,0.06); }
+  .opt-btn:disabled { cursor: not-allowed; }
+  .opt-letter {
+    width: 28px; height: 28px;
+    border-radius: 6px;
+    background: var(--bg3);
+    border: 1.5px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    flex-shrink: 0;
+    font-family: 'JetBrains Mono', monospace;
+    transition: all 0.15s;
+  }
+  .opt-btn.selected .opt-letter { background: var(--accent); border-color: var(--accent); color: white; }
+  .opt-btn.correct .opt-letter { background: var(--green); border-color: var(--green); color: white; }
+  .opt-btn.wrong .opt-letter { background: var(--red); border-color: var(--red); color: white; }
+  .opt-btn.show-ans .opt-letter { background: var(--green); border-color: var(--green); color: white; }
+  .opt-text { font-size: 14px; line-height: 1.6; padding-top: 3px; }
+
+  .q-nav-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+    gap: 1rem;
+  }
+  .btn-prev, .btn-next {
+    padding: 10px 22px;
+    border-radius: var(--radius-sm);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+    border: 1.5px solid var(--border);
+    background: var(--card);
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .btn-prev:hover, .btn-next:hover { border-color: var(--accent); color: var(--accent); }
+  .btn-prev:disabled, .btn-next:disabled { opacity: 0.3; cursor: not-allowed; }
+  .btn-submit-exam {
+    padding: 11px 28px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    border: none;
+    border-radius: var(--radius-sm);
+    color: white;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity 0.15s, transform 0.1s;
+  }
+  .btn-submit-exam:hover { opacity: 0.9; }
+  .btn-submit-exam:active { transform: scale(0.98); }
+
+  /* ─── SIDEBAR ─── */
+  .exam-sidebar {
+    background: var(--bg2);
+    border-left: 1px solid var(--border);
+    padding: 1.25rem;
+    position: sticky;
+    top: 120px;
+    height: calc(100vh - 120px);
+    overflow-y: auto;
+  }
+  .sidebar-title {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text3);
+    margin-bottom: 1rem;
+  }
+  .legend { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1.25rem; }
+  .legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--text2); }
+  .legend-dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+  .legend-dot.answered { background: var(--accent); }
+  .legend-dot.not-answered { background: var(--bg3); border: 1px solid var(--border); }
+  .legend-dot.current { background: var(--accent2); }
+  .legend-dot.marked { background: var(--orange); }
+
+  .q-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 6px;
+    margin-bottom: 1.5rem;
+  }
+  .q-dot {
+    width: 36px; height: 36px;
+    border-radius: var(--radius-sm);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.12s;
+    background: var(--bg3);
+    border: 1.5px solid var(--border);
+    color: var(--text2);
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .q-dot:hover { border-color: var(--accent); color: var(--accent); }
+  .q-dot.answered { background: rgba(79,142,247,0.15); border-color: var(--accent); color: var(--accent); }
+  .q-dot.current { background: var(--accent2); border-color: var(--accent2); color: white; }
+  .q-dot.marked { background: rgba(249,115,22,0.15); border-color: var(--orange); color: var(--orange); }
+  .q-dot.correct { background: rgba(34,197,94,0.15); border-color: var(--green); color: var(--green); }
+  .q-dot.wrong { background: rgba(239,68,68,0.15); border-color: var(--red); color: var(--red); }
+
+  .sidebar-summary {
+    background: var(--bg3);
+    border-radius: var(--radius-sm);
+    padding: 1rem;
+    border: 1px solid var(--border);
+  }
+  .summary-row { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 8px; }
+  .summary-row:last-child { margin-bottom: 0; }
+  .summary-row span:first-child { color: var(--text2); }
+  .summary-row span:last-child { font-weight: 600; font-family: 'JetBrains Mono', monospace; }
+  .mark-for-review-btn {
+    width: 100%;
+    margin-top: 1rem;
+    padding: 9px;
+    background: transparent;
+    border: 1.5px solid var(--orange);
+    border-radius: var(--radius-sm);
+    color: var(--orange);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .mark-for-review-btn:hover { background: rgba(249,115,22,0.1); }
+
+  /* ══════════════════════════════
+     RESULTS PAGE
+  ══════════════════════════════ */
+  #resultsPage { background: var(--bg); }
+
+  .results-header {
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .results-body { max-width: 960px; margin: 0 auto; padding: 2.5rem 1.5rem; }
+
+  .score-hero {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2.5rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .score-hero::before {
+    content: '';
+    position: absolute;
+    top: -80px; left: 50%;
+    transform: translateX(-50%);
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(79,142,247,0.1) 0%, transparent 70%);
+  }
+  .score-circle {
+    width: 140px; height: 140px;
+    border-radius: 50%;
+    background: conic-gradient(var(--accent) 0deg, var(--border) 0deg);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1.5rem;
+    position: relative;
+  }
+  .score-circle-inner {
+    width: 110px; height: 110px;
+    border-radius: 50%;
+    background: var(--card);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+  }
+  .score-pct { font-size: 1.8rem; font-weight: 800; font-family: 'JetBrains Mono', monospace; }
+  .score-pct-label { font-size: 11px; color: var(--text3); font-weight: 500; }
+  .result-set-name { font-size: 1.3rem; font-weight: 800; margin-bottom: 4px; }
+  .result-set-sub { font-size: 14px; color: var(--text2); margin-bottom: 1.5rem; }
+
+  .result-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 2rem; }
+  .res-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 1.1rem;
+    text-align: center;
+  }
+  .res-card-num { font-size: 1.6rem; font-weight: 800; font-family: 'JetBrains Mono', monospace; margin-bottom: 2px; }
+  .res-card-label { font-size: 11px; color: var(--text3); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  .res-actions { display: flex; gap: 1rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap; }
+  .btn-action {
+    padding: 11px 24px;
+    border-radius: var(--radius-sm);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .btn-action.primary { background: linear-gradient(135deg, var(--accent), var(--accent2)); border: none; color: white; }
+  .btn-action.secondary { background: transparent; border: 1.5px solid var(--border); color: var(--text); }
+  .btn-action.secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ─── REVIEW TABLE ─── */
+  .review-section { margin-top: 2rem; }
+  .review-title { font-size: 1rem; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center; gap: 8px; }
+  .review-filters { display: flex; gap: 8px; margin-bottom: 1.25rem; flex-wrap: wrap; }
+  .filter-btn {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1.5px solid var(--border);
+    background: transparent;
+    color: var(--text2);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    transition: all 0.15s;
+  }
+  .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .filter-btn.active { background: var(--accent); border-color: var(--accent); color: white; }
+
+  .review-list { display: flex; flex-direction: column; gap: 10px; }
+  .review-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    border-left: 3px solid var(--border);
+  }
+  .review-item.correct { border-left-color: var(--green); }
+  .review-item.wrong { border-left-color: var(--red); }
+  .review-item.skipped { border-left-color: var(--text3); }
+  .review-q-num { font-size: 11px; font-weight: 700; color: var(--text3); margin-bottom: 6px; text-transform: uppercase; font-family: 'JetBrains Mono', monospace; }
+  .review-q-text { font-size: 14px; line-height: 1.6; margin-bottom: 10px; color: var(--text); font-weight: 500; }
+  .review-answers { display: flex; gap: 1.5rem; flex-wrap: wrap; font-size: 13px; }
+  .your-ans { color: var(--text2); }
+  .your-ans .ans-val { font-weight: 600; color: var(--red); }
+  .correct-ans { color: var(--text2); }
+  .correct-ans .ans-val { font-weight: 600; color: var(--green); }
+  .skipped-tag { font-size: 12px; font-weight: 600; color: var(--text3); background: var(--bg3); padding: 3px 10px; border-radius: 20px; }
+
+  /* ══════════════════════════════
+     MODAL
+  ══════════════════════════════ */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2rem;
+    max-width: 440px;
+    width: 90%;
+    box-shadow: var(--shadow);
+  }
+  .modal h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+  .modal p { font-size: 14px; color: var(--text2); line-height: 1.6; margin-bottom: 1.5rem; }
+  .modal-btns { display: flex; gap: 10px; justify-content: flex-end; }
+
+  /* ─── TOAST ─── */
+  .toast {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 10px 20px;
+    font-size: 13px;
+    font-weight: 500;
+    z-index: 9999;
+    transition: transform 0.3s;
+    white-space: nowrap;
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 768px) {
+    .exam-body { grid-template-columns: 1fr; }
+    .exam-sidebar { display: none; }
+    .result-cards { grid-template-columns: repeat(2, 1fr); }
+    .sets-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ HOME PAGE ═══ -->
+<div id="homePage" class="page active">
+  <div class="home-bg"></div>
+  <div class="home-bg2"></div>
+  <nav class="home-nav">
+    <div class="logo">RAC<span>Prep</span></div>
+    <div style="font-size:13px;color:var(--text2);">Refrigeration & Air Conditioning</div>
+  </nav>
+  <div class="home-hero">
+    <div class="hero-badge">Free Practice Tests</div>
+    <h1 class="hero-title">Ace Your <span class="hl">RAC Exam</span><br>With Smart Practice</h1>
+    <p class="hero-sub">Attempt full-length timed mock tests for Sets 46–51. Track your score, review mistakes, and build confidence.</p>
+    <div class="hero-stats">
+      <div class="stat-item"><div class="stat-num">6</div><div class="stat-label">Practice Sets</div></div>
+      <div class="stat-item"><div class="stat-num">450</div><div class="stat-label">Questions</div></div>
+      <div class="stat-item"><div class="stat-num">90</div><div class="stat-label">Min Per Test</div></div>
+      <div class="stat-item"><div class="stat-num">4</div><div class="stat-label">Options Each</div></div>
+    </div>
+  </div>
+  <div class="sets-grid" id="setsGrid"></div>
+</div>
+
+<!-- ═══ EXAM PAGE ═══ -->
+<div id="examPage" class="page">
+  <div class="exam-header">
+    <div class="exam-title-area">
+      <button class="btn-back" onclick="confirmBack()">&#8592;</button>
+      <div>
+        <div class="exam-name" id="examTitle">Practice Set 46</div>
+        <div class="exam-sub" id="examSub">75 Questions · 90 Minutes</div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+      <div style="font-size:13px;color:var(--text2);" id="examAnsweredCount">0 answered</div>
+      <div class="timer-box">
+        <span class="timer-icon">⏱</span>
+        <div class="timer-display" id="timerDisplay">90:00</div>
+      </div>
+      <button class="btn-submit-exam" onclick="showSubmitModal()">Submit Test</button>
+    </div>
+  </div>
+  <div class="exam-progress-bar"><div class="exam-progress-fill" id="examProgressFill" style="width:0%"></div></div>
+
+  <div class="exam-body">
+    <div class="question-area" id="questionArea">
+      <!-- rendered dynamically -->
+    </div>
+    <div class="exam-sidebar">
+      <div class="sidebar-title">Question Palette</div>
+      <div class="legend">
+        <div class="legend-item"><div class="legend-dot answered"></div> Answered</div>
+        <div class="legend-item"><div class="legend-dot current"></div> Current</div>
+        <div class="legend-item"><div class="legend-dot not-answered"></div> Not visited</div>
+        <div class="legend-item"><div class="legend-dot marked"></div> Marked</div>
+      </div>
+      <div class="q-grid" id="qGrid"></div>
+      <div class="sidebar-summary" id="sidebarSummary"></div>
+      <button class="mark-for-review-btn" onclick="toggleMark()">⚑ Mark for Review</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ RESULTS PAGE ═══ -->
+<div id="resultsPage" class="page">
+  <div class="results-header">
+    <button class="btn-back" onclick="goHome()">&#8592;</button>
+    <div>
+      <div style="font-weight:700;" id="resultsTitle">Results</div>
+      <div style="font-size:12px;color:var(--text3);">Test completed</div>
+    </div>
+  </div>
+  <div class="results-body">
+    <div class="score-hero">
+      <div class="score-circle" id="scoreCircle">
+        <div class="score-circle-inner">
+          <div class="score-pct" id="scorePct">0%</div>
+          <div class="score-pct-label">Score</div>
+        </div>
+      </div>
+      <div class="result-set-name" id="resultSetName"></div>
+      <div class="result-set-sub" id="resultSetSub"></div>
+      <div class="result-cards" id="resultCards"></div>
+      <div class="res-actions">
+        <button class="btn-action primary" onclick="retakeTest()">Retake Test</button>
+        <button class="btn-action secondary" onclick="goHome()">← All Tests</button>
+      </div>
+    </div>
+
+    <div class="review-section">
+      <div class="review-title">📋 Detailed Review</div>
+      <div class="review-filters">
+        <button class="filter-btn active" onclick="filterReview('all', this)">All</button>
+        <button class="filter-btn" onclick="filterReview('correct', this)">✓ Correct</button>
+        <button class="filter-btn" onclick="filterReview('wrong', this)">✗ Wrong</button>
+        <button class="filter-btn" onclick="filterReview('skipped', this)">— Skipped</button>
+      </div>
+      <div class="review-list" id="reviewList"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ MODALS ═══ -->
+<div class="modal-overlay" id="submitModal">
+  <div class="modal">
+    <h3>Submit Test?</h3>
+    <p id="submitModalText">You have answered 0 out of 75 questions. Are you sure you want to submit?</p>
+    <div class="modal-btns">
+      <button class="btn-action secondary" onclick="closeModal('submitModal')">Cancel</button>
+      <button class="btn-action primary" onclick="submitExam()">Submit</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="backModal">
+  <div class="modal">
+    <h3>Leave Test?</h3>
+    <p>Your progress will be lost if you go back. Are you sure you want to exit the test?</p>
+    <div class="modal-btns">
+      <button class="btn-action secondary" onclick="closeModal('backModal')">Stay</button>
+      <button class="btn-action primary" onclick="goHome()">Exit</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ═══════════════════════════════════════════════
+// DATA
+// ═══════════════════════════════════════════════
+const SETS = {
+  46: { title: "Practice Set 46", questions: 75,
+    answers: {1:'c',2:'c',3:'a',4:'c',5:'b',6:'b',7:'d',8:'a',9:'c',10:'c',11:'a',12:'d',13:'d',14:'c',15:'d',16:'c',17:'d',18:'c',19:'b',20:'c',21:'a',22:'d',23:'d',24:'c',25:'d',26:'c',27:'a',28:'c',29:'d',30:'b',31:'a',32:'a',33:'d',34:'d',35:'b',36:'c',37:'d',38:'c',39:'a',40:'a',41:'b',42:'c',43:'a',44:'a',45:'d',46:'d',47:'d',48:'a',49:'b',50:'a',51:'a',52:'b',53:'c',54:'a',55:'b',56:'c',57:'d',58:'c',59:'a',60:'d',61:'d',62:'b',63:'a',64:'c',65:'c',66:'a',67:'b',68:'d',69:'b',70:'d',71:'d',72:'d',73:'a',74:'c',75:'a'},
+    qs: [
+      {n:1,q:"The instrument used to measure the relative humidity of the air, use it is called?",o:["thermometer","tachometer","sling psychrometer","all of these"]},
+      {n:2,q:"Which part remove the pressure from the compressor?",o:["Delivery valve reed","Suction valve port","Discharge line","Valve plate"]},
+      {n:3,q:"Which of the following turns off the compressor when the temperature is low and start when it is high?",o:["Thermostat","Evaporator","Relay","All of these"]},
+      {n:4,q:"Which of the following is not a problem related to refrigerator?",o:["A sound of the compressor","Refrigerator not standing properly","Interruption of current flow","None of the above"]},
+      {n:5,q:"The difference between dry bulb temperature and dew point temperature of air is–",o:["dew point heat","dew point depression","dew point enthalpy","dew point humidity"]},
+      {n:6,q:"In chilled-water air-conditioning application, the following evaporator is used:",o:["Dry expansion type evaporator","Shell and tube type chiller","Double pipe evaporator","None of the above"]},
+      {n:7,q:"In the first method of removing air from the refrigerator, the compressor is attached with–",o:["Evaporator","Expansion valve","Condenser","All of these"]},
+      {n:8,q:"Which part, release the pressured from compressor?",o:["Delivery valve reeds","Suction valve port","Discharge line","Valve plate"]},
+      {n:9,q:".......... insulated high liquid line of a refrigeration system to reduce gas",o:["Condensation","Heat loss","Heat gain","Heat transfer"]},
+      {n:10,q:"How can you prevent freezer frost?",o:["Get the freezer serviced after every six months","Keep a box of baking soda in freezer","Set the temperature exactly at -17°C and add water if needed only open the door","None of the above"]},
+      {n:11,q:"The potential wall of silicon material is–",o:["0.7 Volt","0.5 Volt","0.3 Volt","0.2 Volt"]},
+      {n:12,q:"Which colour wire should be used for ground (earth) to the deep freezer system?",o:["Red","Blue","White","Green"]},
+      {n:13,q:"What is the reason for the ice cuber's compressor trips often on OLP?",o:["Frequent collecting of ice cubes","Thermostat set on high cool","Freezer door tight close","Dirty condenser"]},
+      {n:14,q:"Other name for an evaporator is–",o:["cooling unit","chilling unit","both (a) and (b)","condenser"]},
+      {n:15,q:"In vapour absorption system ........... is used.",o:["Mechanical energy","Electrical energy","Potential energy","Heat energy"]},
+      {n:16,q:"Where are the plate type evaporators used?",o:["Split AC","Window AC","Locker plant","Central plant"]},
+      {n:17,q:"Compressors in vapour absorption refrigeration system–",o:["is used","is not used","Instead of an absorber, a heat exchanger is used","Instead of an absorber, a generator is used"]},
+      {n:18,q:"The resistance of earth electrode is very low. Due to this, which current goes into the earth?",o:["Minimum current","Electric current","Leakage current","None of these"]},
+      {n:19,q:"What is requirement of given root gap between part to be joint during arc welding?",o:["Ignoring spatter","To control error","Free flow of fuse metal","Filling up to the end of the fuse metal"]},
+      {n:20,q:"Sensitive drilling machine - Statement I: Used to make precise holes. Statement II: Capacity up to 20 mm diameter. Which is correct?",o:["I only","II only","both (a) and (b)","none of these"]},
+      {n:21,q:"In which vehicle was the automobile A.C. first used?",o:["Car","Bus","Truck","Train"]},
+      {n:22,q:"Core is a part of which of the following?",o:["Packaged chiller","Screw chiller","Reciprocating chiller","Modulating chiller"]},
+      {n:23,q:"Ammonia causes corrosion on which of the following metals?",o:["Copper","Brass","Steel","Both (a) and (b)"]},
+      {n:24,q:"Which of the following two semiconductor materials are mostly used?",o:["Gallium and Iridium","Aluminium and Antimony","Germanium and Silicon","Arsenic and Boron"]},
+      {n:25,q:"The fins of a finned coil evaporator are made of which material?",o:["Aluminium","Copper","Steel","Both (a) and (b)"]},
+      {n:26,q:"What are the circular rings of copper on a PCB used to make solder connections to component leads called?",o:["Islands","Disc","Pads","Patches"]},
+      {n:27,q:"In a 3-ϕ induction motor the starting torque will be __ and starting current will be __.",o:["low, high","high, high","high, low","low, low"]},
+      {n:28,q:"The correct colours of oxygen and acetylene cylinders are–",o:["Red for O₂ and blue for acetylene","Black for O₂ and red for acetylene","Black for O₂ and maroon for acetylene","Red for O₂ and Maroon for acetylene"]},
+      {n:29,q:"Which type of file is shown with a curved handle and blades?",o:["Crass file","Straight file","Draw file","Curved file"]},
+      {n:30,q:"Where should user of pump be located?",o:["Beside the water source","Near to water source","Near to pipe line","Center of the pipe line"]},
+      {n:31,q:"Window AC - by which part is the air cleaned?",o:["Filter","Compressor","Evaporator","Thermostat"]},
+      {n:32,q:"Which device is used in water cooler to control the temperature of water?",o:["Thermostat valve","Float valve","Solenoid valve","Expansion valve"]},
+      {n:33,q:"Split AC the main part of -",o:["Condensing unit","Indoor unit","Outdoor unit","Both (b) and (c)"]},
+      {n:34,q:"When welding refrigerant lines, what is most important BEFORE heat is applied?",o:["cleaning tube","removal of insulation","pump out all the refrigerant","wearing a welding mask"]},
+      {n:35,q:"Which condenser fin provides better heat transfer?",o:["Steel","Copper","GI sheet","Aluminium"]},
+      {n:36,q:"During bottom cooler installation, what importance should be given?",o:["Closing the window","Switch off the light","Free air circulation","Using rubber pads in front"]},
+      {n:37,q:"Global warming potential (GWP) of R-12 is:",o:["1.2","4.5","3.1","0.03"]},
+      {n:38,q:"How is the winding of any sealed compressor cooled down?",o:["By lubricant","By circulating air","By suction vapour","By fluid refrigerant"]},
+      {n:39,q:"Which of the following is a type of karva tree?",o:["Kapok","cork board","celotex","thermocol"]},
+      {n:40,q:"The main reason for using expansion valves in domestic refrigeration system is",o:["It's product is cheap and easy","It is less possibility to choke","It controls the flow of refrigerant precisely","None of the above"]},
+      {n:41,q:"In a direct expansion system the product to be cooled __________.",o:["comes directly in contact with the refrigerant flowing inside the evaporator","is outside the surface of the evaporator and cooled by heat transfer","is cooled by an intermediate coolant cooled by the refrigerant","none of these"]},
+      {n:42,q:"Which company was the first to manufacture the frost free refrigerator in India?",o:["Samsung","Hitachi","Videocon","Panasonic"]},
+      {n:43,q:"Following is an example of brine solution–",o:["NaCl","KCl","PCl","NaOH"]},
+      {n:44,q:"The value of capacitive reactance is–",o:["Xc = 1/(2πfC)","Xc = 2πfC","Xc = 2π/fC","Xc = (1/2π)×fC"]},
+      {n:45,q:"Near synchronous speed in induction motor, torque speed and torque-slip curves are approximately:",o:["Hyperbola","Parabola","Ellipses","Straight lines"]},
+      {n:46,q:"All single phase motors in India are manufactured to operate at __ frequency",o:["50 Hz","50 ± 0.5 Hz","50 ± 1 Hz","50 ± 3%"]},
+      {n:47,q:"Which substance is left behind as residue after making acetylene by calcium carbide?",o:["CaO","CaCl₂","Ca₂(OH)₄","Ca(OH)₂"]},
+      {n:48,q:"Which of the following metals is not used to make rivets?",o:["Cast iron","Copper","Wrought iron","Mild steel"]},
+      {n:49,q:"Lock nut in the micrometer is provided to–",o:["Control the movement of the spindle","Lock the reading after setting it over the workpiece","Measure the workpiece accurately","Lock the micrometer when not in use"]},
+      {n:50,q:"Air conditioning is required in the manufacture of precision parts to __________.",o:["Achieve close tolerances","Prevent rust formation","Provide clean environment","All of the above"]},
+      {n:51,q:"The chiller system can be powered by–",o:["Electric motor, steam gas turbine","Coal","Electrically","All of the above"]},
+      {n:52,q:"It is a part where both incoming air and outgoing air meet–",o:["OR damper","OA damper","RA damper","SA damper"]},
+      {n:53,q:"The temperature of water vapor in atmospheric air is __________.",o:["More than temperature of dry air","Less than temperature of dry air","Equal to temperature of dry air","None of these"]},
+      {n:54,q:"DX system stands for:",o:["Direct system","Indirect system","Device system","Double system"]},
+      {n:55,q:'What does "heat of respiration" mean?',o:["Heat load from insulation","Heat load from fresh fruits and vegetables","Heat load from when door is opened","Heat load from condenser"]},
+      {n:56,q:"It produces cooling in the water cooler–",o:["compressor","condenser","evaporator","drier"]},
+      {n:57,q:"The filter which filters five micron is named as __________.",o:["catch all filter","smooth filter","rough filter","fine filter"]},
+      {n:58,q:"When should cooling tower maintenance be taken as per schedule?",o:["Weekly","Yearly","Monthly","Quarterly"]},
+      {n:59,q:"Which electrical component of a car AC allows a full range of blower speeds?",o:["Rheostat","Thermostat","Magnetic clutch","Fuse"]},
+      {n:60,q:"If air is present in a split air conditioner, it will be deposited on–",o:["in the compressor suction chamber","on the evaporator cooling coil","in the whole volume of capillary tube","at the top level of condenser"]},
+      {n:61,q:"Which of the following is an insulating material?",o:["Glass wool","Thermocol","Poly urethane","All of these"]},
+      {n:62,q:"Filter drier absorbs moisture. The material of which pencil type filter is made",o:["Cast iron","Copper","Aluminium","Mild steel"]},
+      {n:63,q:"Majority of thermostatic expansion valves are set for value of superheat at:",o:["5°C","10°C","15°C","20°C"]},
+      {n:64,q:"The compressor in the vapour compression system is replaced by-",o:["An absorber","A generator","An absorber-generator","None of these"]},
+      {n:65,q:"Which side of a refrigeration system is an evaporator used?",o:["High pressure side","High temperature side","Low pressure side","None of these"]},
+      {n:66,q:"30°C is equal to __________.",o:["303 K","273 K","300 K","313 K"]},
+      {n:67,q:"Which refrigerant was used by Perkins in 1834?",o:["Ammonia","Ether","CFC","Air"]},
+      {n:68,q:"Which of the following is not a refrigerant of HFCs group?",o:["R-23","R-32","R-41","R-11"]},
+      {n:69,q:"1 microfarad is equal to what?",o:["10⁻⁹ farad","10⁻⁶ farad","10⁻³ farad","10⁶ farad"]},
+      {n:70,q:"Which is true regarding running capacitor?",o:["It is permanently connected to the motor","It is connected in series to the starting winding","It is of electrolyte type","All of these"]},
+      {n:71,q:"Which of the following stakes provides double-ended shelter?",o:["Hatchet stake","Half moon stake","Creasing stake","Horse stake"]},
+      {n:72,q:"Which of the following removes extra material from the job?",o:["Rough file","Dead smooth file","Second cut file","Bastard file"]},
+      {n:73,q:"To extinguish a fire caused by petrol __________ is used.",o:["Foam type fire extinguishers","Sand bucket","Bucket of water","Dry powder fire extinguishers"]},
+      {n:74,q:"The most commonly used refrigerant in car AC systems today is:",o:["R-12","R-123","R-134a","R-717"]},
+      {n:75,q:"The effect of superheating of steam on the compressor is–",o:["Profitable","Harmful","No effect","None of the above"]}
+    ]
+  },
+  47: { title: "Practice Set 47", questions: 75,
+    answers: {1:'b',2:'b',3:'d',4:'d',5:'c',6:'d',7:'c',8:'c',9:'b',10:'a',11:'d',12:'d',13:'a',14:'d',15:'c',16:'c',17:'a',18:'b',19:'c',20:'c',21:'a',22:'d',23:'d',24:'c',25:'a',26:'c',27:'a',28:'c',29:'d',30:'b',31:'b',32:'c',33:'c',34:'c',35:'c',36:'d',37:'b',38:'c',39:'d',40:'b',41:'b',42:'d',43:'c',44:'d',45:'d',46:'a',47:'b',48:'b',49:'d',50:'d',51:'a',52:'b',53:'d',54:'b',55:'d',56:'d',57:'a',58:'a',59:'c',60:'a',61:'b',62:'a',63:'c',64:'a',65:'b',66:'c',67:'d',68:'d',69:'d',70:'c',71:'d',72:'b',73:'d',74:'a',75:'d'},
+    qs: [
+      {n:1,q:"The temperature of dry air as measured by an ordinary thermometer is called–",o:["wet bulb temperature","dry bulb temperature","dew point temperature","None of these"]},
+      {n:2,q:"Which part allows the gas to move upward from the cylinder of the compressor?",o:["Suction service valve","Discharge service valve","Discharge valve","Suction valve"]},
+      {n:3,q:"The function of compressor is:",o:["Converting low pressure to high pressure","Converting low temperature to high temperature","Drawing refrigerant vapour from the evaporator","All of the above"]},
+      {n:4,q:"Which of the following is included in the automatic defrosting system?",o:["Timer","Heater","Thermostat","All of these"]},
+      {n:5,q:"Relative humidity line drawn in psychrometry chart is–",o:["horizontal","vertical","curve","oblique"]},
+      {n:6,q:"The fin type condenser in a household refrigerator is located at which part?",o:["Top","Side","Bottom","Back"]},
+      {n:7,q:"In the second method of venting air from the refrigerator it is fitted with the charging line–",o:["Service valve","Oil container","Both (a) and (b)","Condenser"]},
+      {n:8,q:"How the compressor is connected to motor instead of V belt?",o:["Main bearing","Connecting rod","Tyre coupling","Flywheel"]},
+      {n:9,q:"The coil of copper tubing through which the cold refrigerant flows is called",o:["Condenser","Evaporator","Thermostat","Compressor"]},
+      {n:10,q:"What should be the ideal distance between the freezer coil and the wall?",o:["3 to 5 inches (7.6 to 12.7 cm)","6 to 8 inches (15.2 to 20.3 cm)","9 to 11 inches (22.9 to 27.9 cm)","None of the above"]},
+      {n:11,q:"Statement-I: Indium and gallium are pentavalent elements. Statement-II: Arsenic and antimony are trivalent elements. Which is correct?",o:["Statement-I is correct","Statement-II is correct","Both are correct","Both are wrong"]},
+      {n:12,q:"A bottle in a bottle cooler cracks because of ________.",o:["Increase in flow of fluid","Stopping of fluid flow","Reaction of fluid","Increase in volume of frozen fluid"]},
+      {n:13,q:"Ice candy plant is installed–",o:["For making ice-cream","For making ice","For keeping product safe","None of these"]},
+      {n:14,q:"The principle on which desert cooler works is–",o:["Condensation","Precipitation","Freezing","Evaporative cooling"]},
+      {n:15,q:"The principle of vapour absorption refrigeration system is that",o:["Ammonia and water do not mix easily","Ammonia and water mix on heating","Ammonia and water mix very easily","None of the above"]},
+      {n:16,q:"The compressor connected with the motor from outside is called–",o:["Sealed compressor","Semi-sealed compressor","Open type compressor","None of the above"]},
+      {n:17,q:"Correct sequence of the vapour compression refrigeration cycle:",o:["Expansion, Evaporation, Compression, Condensation","Expansion, Compression, Condensation, Evaporation","Evaporation, Expansion, Compression, Condensation","Compression, Evaporation, Condensation, Expansion"]},
+      {n:18,q:"The resistance of earth electrode should not be more than how many ohms?",o:["5 Ω","3 Ω","4 Ω","6 Ω"]},
+      {n:19,q:"Which head gear should be used to avoid sparks while welding on the head?",o:["Apron","Glove","Helmet screen","Spectacles"]},
+      {n:20,q:"Sensitive drilling machine - Statement I: Makes precise holes. Statement II: Capacity up to 20 mm. Which is correct?",o:["I only","II only","both (a) and (b)","none of these"]},
+      {n:21,q:"In which vehicle was the automobile A.C. first used?",o:["Car","Bus","Truck","Train"]},
+      {n:22,q:"Core is a part of which of the following?",o:["Packaged chiller","Screw chiller","Reciprocating chiller","Modulating chiller"]},
+      {n:23,q:"Ammonia causes corrosion on which metals?",o:["Copper","Brass","Steel","Both (a) and (b)"]},
+      {n:24,q:"Which two semiconductor materials are mostly used?",o:["Gallium and Iridium","Aluminium and Antimony","Germanium and Silicon","Arsenic and Boron"]},
+      {n:25,q:"Rotary compressor:",o:["Cannot be repaired","Can be repaired","The rotor is eccentric with the cylinder housing","The blades seal the refrigerant gas"]},
+      {n:26,q:"Circular rings of copper on a PCB for solder connections are called?",o:["Islands","Disc","Pads","Patches"]},
+      {n:27,q:"In a 3-ϕ induction motor the starting torque will be __ and starting current will be __.",o:["low, high","high, high","high, low","low, low"]},
+      {n:28,q:"Correct colours of oxygen and acetylene cylinders are–",o:["Red for O₂ and blue for acetylene","Black for O₂ and red for acetylene","Black for O₂ and maroon for acetylene","Red for O₂ and Maroon for acetylene"]},
+      {n:29,q:"Which type of File is shown (curved handle with blades)?",o:["Crass file","Straight file","Draw file","Curved file"]},
+      {n:30,q:"Which of the following pump can increase the flow pressure of water?",o:["Evaporator","Pump","Condenser","All of these"]},
+      {n:31,q:"Which of the following is NOT a part of an outdoor unit?",o:["Compressor","Evaporator","Condenser","Expansion valve"]},
+      {n:32,q:"Which pump has the disadvantage of not being self-priming?",o:["Reciprocating pump","Gear pump","Centrifugal pump","All of the above"]},
+      {n:33,q:"Split AC's main advantage is -",o:["It can be installed on window also","It consumes less electricity","It does not make noise","It is very cheap"]},
+      {n:34,q:"The substance used between metallic surfaces to make the joint leak proof is called",o:["seal","stopper","gasket","seam"]},
+      {n:35,q:"The fan that circulates cooling from the evaporator is–",o:["condenser fan","compressor fan","blower","none of these"]},
+      {n:36,q:"In a refrigeration system, low temperature steam is converted to high pressure gas by–",o:["Evaporator","Condenser","Capillary tube","Compressor"]},
+      {n:37,q:"The component operated by the engine of transport vehicles is–",o:["condenser","compressor","evaporator","receiver"]},
+      {n:38,q:"Carbonic insulating material is/are–",o:["rubber","rice bran","both 'a' and 'b'","slag wool"]},
+      {n:39,q:"In a small refrigerator, capillary tube is used to serve the purpose of:",o:["dehumidifier","thermostat","solenoid","expansion valve"]},
+      {n:40,q:"Select the cause of failure of the capillary tube",o:["Refrigerator being overcharged","Refrigerator being under charged","High ambient temperature","Dust and mixture block"]},
+      {n:41,q:"What will be the result if ductable split A.C. condenser is very dirty?",o:["Room will be cool","Compressor will trap","Room will be very hot","A.C. will run continuously"]},
+      {n:42,q:"The unit of volume of refrigerator cabinet is–",o:["cubic feet","cubic meter","cubic centimeter","all of these"]},
+      {n:43,q:"What is the quick and temporary solution for shortage of refrigerant gas?",o:["Mix oil","Check for any leaks","Top-up the gas","Pressurize the unit"]},
+      {n:44,q:"The complex form of impedance of pure resistance circuit is–",o:["Z = R + X Ω","Z = R ∠ 0° Ω","Z = R ∠ + 90° Ω","Z = R + 0 Ω"]},
+      {n:45,q:"Single phase motors in India are manufactured to operate at which voltage?",o:["Only at 220V","220 + 10 V","200 ± 0 V","220 ± 5%"]},
+      {n:46,q:"A split-phase motor is started by connecting both windings across the line in:",o:["Parallel","Series","Series-parallel","An inductive coupling"]},
+      {n:47,q:"In which flame, oxygen and acetylene gas are equally used?",o:["Acetylene flame","Neutral flame","Oxidized flame","Carburized flame"]},
+      {n:48,q:"Boiler rivets — their necks being chamfered at an angle of:",o:["30°","45°","60°","90°"]},
+      {n:49,q:"Micrometer works on the principle of–",o:["screw","bolt","stud","Nut and screw"]},
+      {n:50,q:"Modern electronic equipment requires cooling due to–",o:["Dissipation of large heat in small volumes","Prevent erratic behaviour","Improve life","All of the above"]},
+      {n:51,q:"The cooling effect of chiller machine is based on which process?",o:["Evaporation","Condenser","Vapour compressor","All of these"]},
+      {n:52,q:"Modern component for fault detection in ducting is–",o:["a thermometer","sensor","condenser","compressor"]},
+      {n:53,q:"In saturated air __________.",o:["Relative humidity is 100%","WBT > DPT","DBT = DPT","Both (a) and (c)"]},
+      {n:54,q:"In which A.C. system is the air cooled directly?",o:["Indirect system","Direct system","(a) and (b) both","None of these"]},
+      {n:55,q:"Float assembly is used in-",o:["Bubble top cooler","Instantaneous cooler","Industrial cooler","Storage cooler"]},
+      {n:56,q:"The component used for controlling temperature in a water cooler is–",o:["electric motor","float valve","relay","thermostat"]},
+      {n:57,q:"In which direction does the blower blow the air?",o:["Forward, in parallel direction","Backward, in parallel direction","Forward, in vertical direction","Backward, in vertical direction"]},
+      {n:58,q:"What is the next step after disconnecting inlet/outlet of suction liquid heat exchanger?",o:["Put dummy","Set nitrogen","Open regulator","Start flushing"]},
+      {n:59,q:"Which component allows compressor to connect/disconnect from thermostat in car AC?",o:["rheostat","thermostat","magnetic clutch","fuse"]},
+      {n:60,q:"When were the room coolers used for air conditioning invented?",o:["1930","1939","1929","1920"]},
+      {n:61,q:"What is the disadvantage of manual defrosting?",o:["Consumes lot of current","Takes a lot of time","Frosts quickly","Takes less time"]},
+      {n:62,q:"The refrigerant undergoes sudden expansion to low pressure in which component?",o:["Expansion valve","Evaporator","Compressor","Rectifier"]},
+      {n:63,q:"What is the cause for valve getting damaged?",o:["Low pressure gas","Purity of lube oil","Wet compression","Slow operation"]},
+      {n:64,q:"During a refrigeration cycle, heat is rejected by the refrigerant in a __________.",o:["Condenser","Compressor","Evaporator","Expansion valve"]},
+      {n:65,q:"Cylinder with piston is used in–",o:["Condenser","Compressor","Evaporator","Expansion valve"]},
+      {n:66,q:"For ammonia refrigerating systems, the tubes of the evaporator are made of–",o:["Copper","Aluminium","Steel","Brass"]},
+      {n:67,q:"Which is a property of an ideal refrigerant?",o:["Should not be toxic","Should not be non-corrosive","Must have a low boiling point","All of these"]},
+      {n:68,q:"The halogen present in halo-carbon refrigerant is–",o:["chlorine","fluorine","bromine","all of these"]},
+      {n:69,q:"Which relay is an electronic type relay?",o:["Current","Thermal","Potential","Solid State"]},
+      {n:70,q:"The main winding of the motor is called–",o:["starting winding","rotating winding","running winding","stopping winding"]},
+      {n:71,q:"The least bend radius depends on–",o:["material and thickness of the plate","along the direction of the plate","at working temperature","all of the above"]},
+      {n:72,q:"Filing of tin, lead, copper etc. is done by–",o:["rasp cut file","curved cut file","single cut file","double cut file"]},
+      {n:73,q:"Which is generally used to extinguish fire caused by electricity?",o:["Water","Oil","RRB","None of these"]},
+      {n:74,q:"The type of evaporator used in domestic refrigerator is:",o:["Natural convection","Dry expansion","Double plate","None of the above"]},
+      {n:75,q:"The air cooling system mostly used in transport type aircraft is",o:["Simple evaporative air cooling system","Simple air cooling system","All of these","Boot strap air cooling system"]}
+    ]
+  },
+  48: { title: "Practice Set 48", questions: 75,
+    answers: {1:'a',2:'d',3:'c',4:'c',5:'a',6:'d',7:'a',8:'d',9:'a',10:'b',11:'c',12:'a',13:'b',14:'d',15:'b',16:'b',17:'d',18:'b',19:'d',20:'a',21:'a',22:'d',23:'c',24:'b',25:'a',26:'a',27:'b',28:'d',29:'d',30:'b',31:'d',32:'b',33:'b',34:'c',35:'a',36:'d',37:'c',38:'d',39:'b',40:'b',41:'b',42:'d',43:'c',44:'d',45:'c',46:'a',47:'b',48:'b',49:'b',50:'a',51:'c',52:'b',53:'b',54:'b',55:'d',56:'d',57:'a',58:'a',59:'c',60:'c',61:'a',62:'c',63:'b',64:'a',65:'b',66:'c',67:'d',68:'d',69:'d',70:'a',71:'a',72:'b',73:'d',74:'a',75:'d'},
+    qs: [
+      {n:1,q:"At which temperature does the moisture present in air start to condense?",o:["dew point temperature","bulb temperature","depression temperature","all of these"]},
+      {n:2,q:"Part of open type compressor marked with 'X' (top part of diagram)?",o:["Suction valve","Discharge valve","Discharge valve plate","Suction valve plate"]},
+      {n:3,q:"Which component in the refrigeration system increases temperature and pressure?",o:["Condenser","Evaporator","Compressor","Expansion valve"]},
+      {n:4,q:"While selling a new refrigerator, which of the following should be kept in mind?",o:["Specification of refrigerator","Suitable place to keep","Both (a) and (b)","None of the above"]},
+      {n:5,q:"Enthalpy line drawn in psychrometry chart is–",o:["horizontal","vertical","curve","oblique"]},
+      {n:6,q:"The condenser fins of a refrigerator should be cleaned by–",o:["Soap solution","Painting brush","Diluted acid","Fin comb"]},
+      {n:7,q:"Which of the following makes it difficult for a refrigerator to maintain constant temperature?",o:["Moisture","Wind","Both (a) and (b)","Condenser"]},
+      {n:8,q:"Where to punch mark before dismantling the compressor?",o:["Motor","Oil sump","Base bolt","Valve plate and head"]},
+      {n:9,q:"Which component of mechanical refrigeration system is considered its heart?",o:["Compressor","Condenser","Evaporator","Thermostat"]},
+      {n:10,q:"What does a digital temperature regulator do?",o:["Regulates room outside temperature","Allows setting the freezer temperature inside","Overrides the internal manual temperature settings","None of the above"]},
+      {n:11,q:"One way to increase the conductivity of a semiconductor is-",o:["By removing impure molecules","By adding pure molecules","By adding impure molecules","Using voltage"]},
+      {n:12,q:"Water inlet flow of a water cooler is controlled by ________.",o:["Solenoid valve","Float valve","Expansion valve","Pressure regulating valve"]},
+      {n:13,q:"Cooling compartment of ice candy plant is made of–",o:["Galvanized iron","Stainless steel","Aluminium","None of these"]},
+      {n:14,q:"The components of a float valve are–",o:["float ball","needle valve","float arm","all of these"]},
+      {n:15,q:"A partial type condenser / closed type vapor cooler in vapor compression system is called?",o:["Condenser","Rectifier","Absorber","Generator"]},
+      {n:16,q:"Reversed Carnot cycle comprises",o:["Two isentropic and two adiabatic processes","Two isentropic and two isothermal processes","Two isentropic and two constant pressure processes","Two isentropic and two constant volume processes"]},
+      {n:17,q:"Which is the only moving part in the vapour absorption refrigeration system?",o:["Generator","Rectifier","Condenser","Aqua pump"]},
+      {n:18,q:"Which metal wire should be used for earth line in building?",o:["Aluminium","Copper","Brass","Tin"]},
+      {n:19,q:"Which machine has a pole changing system?",o:["D.C. generator","A.C transformer","Rectifier","Inverter"]},
+      {n:20,q:"Which is used to raise the pillar drilling machine table?",o:["Rack and pinion","beel gear","spur gear","Maunter gear"]},
+      {n:21,q:"At high speed of engine, AC system will generate–",o:["heat","over cooling","cooling","none of these"]},
+      {n:22,q:"White smoke comes when __________ gets close to sulphur dioxide.",o:["Chlorine","Carbon","Fluorine","Ammonia"]},
+      {n:23,q:"Where/when is P-N junction formed?",o:["In the depletion region","In a large reverse biased region","A point where two oppositely doped materials meet","Whenever there is a forward voltage drop"]},
+      {n:24,q:"In an aircraft refrigeration system, pressure at the cooling turbine outlet equals?",o:["Ambient pressure","Cabin pressure","Compressor inlet pressure","Evaporator pressure"]},
+      {n:25,q:"A conductor should have–",o:["Low specified resistance","Medium specified resistance","High specified resistance","Any specified resistance"]},
+      {n:26,q:"Starting current of 3-phase induction motor compared to full load current is?",o:["5 to 7 times","2 to 3 times","Half","10 to 20 times"]},
+      {n:27,q:"Two elements in cast iron that make gas cutting difficult are?",o:["Sulphur and phosphorus","Silicon and graphite","Graphite and phosphorus","Silicon and sulphur"]},
+      {n:28,q:"A bastard file has ________ teeth/cm.",o:["8 Teeth/cm","9 Teeth/cm","10 Teeth/cm","12 Teeth/cm"]},
+      {n:29,q:"What is a booster pump used for?",o:["To increase the velocity of water","To increase the pressure of water","To increase the impulse","None of above"]},
+      {n:30,q:"Blower is fitted -",o:["In outdoor unit","In indoor unit","Both (a) and (b)","None of these"]},
+      {n:31,q:"In a domestic refrigerator, capillary tube controls refrigerant flow from?",o:["expansion valve to the evaporator","evaporator to the thermostat","condenser to the expansion valve","condenser to the evaporator"]},
+      {n:32,q:"Split AC indoor unit — part 'A' (front angled panel) is called?",o:["Damper","Louvers","Air Inlet","Distributor"]},
+      {n:33,q:"Which tool is used to seal / close the diameter of copper tube?",o:["swaging tool","flaring tool","bending tool","pitching tool"]},
+      {n:34,q:"What is the reason for a noisy unit?",o:["Dirty condenser","Bent fan blades","Low refrigerant in system","Inappropriate motor speed"]},
+      {n:35,q:"Presence of moisture in a refrigerant affects the working of:",o:["Compressor","Condenser","Evaporator","Expansion valve"]},
+      {n:36,q:"The capacity of a direct cooling type evaporator is–",o:["1/6 HP","1/4 HP","3/8 HP","all of these"]},
+      {n:37,q:"Expanded polystyrene is called",o:["cork board","Kapok","celotex","thermocol"]},
+      {n:38,q:"Used to measure the size of hole of capillary tube.",o:["Pluge gauge","Pin","Drill","All of these"]},
+      {n:39,q:"In a shell and tube condenser–",o:["water in shell and refrigerant in tube","water in tube and refrigerant in shell","both (a) and (b)","none of these"]},
+      {n:40,q:"Which component is NOT used in conventional refrigerator?",o:["Capillary tube","Drier","Evaporator fan","Suction line"]},
+      {n:41,q:"Equivalent amount of HCs to CFCs-12 to charge through load?",o:["70%","60%","50%","40%"]},
+      {n:42,q:"Voltage measured between any two phases of supply system is called–",o:["line voltage","phase voltage","total voltage","none of these"]},
+      {n:43,q:"After starting winding is disconnected, single phase motor runs on:",o:["Running winding","Running cage winding","Compensating winding","None of the above"]},
+      {n:44,q:"Identify the circuit (split phase motor with centrifugal switch)",o:["Permanent capacitor motor","Repulsion motor","Shaded pole motor","Split phase motor"]},
+      {n:45,q:"Which flame has higher temperature?",o:["Acetylene flame","Neutral flame","Oxidised flame","Carburised flame"]},
+      {n:46,q:"From which metals are rivets made?",o:["copper-bronze","carbon steel","Brass","All of these"]},
+      {n:47,q:"Which instrument measures the angle of taper accurately?",o:["Bavel gauge","Bevel protractor","Vernier bevel protractor","Taper gauge"]},
+      {n:48,q:"In vapour absorption system, refrigerant absorption by the absorbent involves:",o:["Heat is absorbed","Heat is released","No thermal effect","Decrease in volume"]},
+      {n:49,q:"Which chiller is the world's first water cooled screw chiller?",o:["Packaged chiller","23 × RV screw chiller","Both (a) and (b)","None of these"]},
+      {n:50,q:"Component for separation of return duct from main duct is–",o:["roof exhaust fan","return duct adjuster","return duct control","all of these"]},
+      {n:51,q:"Dew point temperature (DPT) is measured by–",o:["Normal thermometer","Web bulb thermometer","Dew point thermometer","None of these"]},
+      {n:52,q:"Refrigerant used in indirect system is–",o:["Primary","Secondary","Tertiary","All of these"]},
+      {n:53,q:"The approximate storage temperature of fish is",o:["12°C","-10°C","-20°C","5°C"]},
+      {n:54,q:"In refrigeration system with water-cooled condenser, on a hot humid day–",o:["The head pressure will be lower","The head pressure will be higher","Head pressure not affected by high humidity","Head pressure not affected by dry bulb temperature"]},
+      {n:55,q:"If calcium carbonate deposits in pipes, it will–",o:["Restrict water flow","Restrict heat exchange","Reduce inside diameter of pipes","All of above"]},
+      {n:56,q:"Mechanical draft cooling tower's side will be–",o:["Opened","Closed","Partially opened","Partially closed"]},
+      {n:57,q:"The required capacity of a car air conditioner is–",o:["much more than comparable house area","much less than comparable house area","equal to comparable house area","none of the above"]},
+      {n:58,q:"Recommended cooling temperature for efficient use of AC unit?",o:["16°C","20°C","24°C","28°C"]},
+      {n:59,q:"What does the timer activate while defrosting hot gas?",o:["King valve","Suction valve","Discharge valve","Solenoid valve of the hot gas line"]},
+      {n:60,q:"Automatic expansion valve is operated by–",o:["Low side temperature","High side pressure valve","Low side pressure","Drier temperature"]},
+      {n:61,q:"The variation in pressure caused by the capillary tube is proportional to its–",o:["length","torque","diameter","density"]},
+      {n:62,q:"The absorption of refrigerant by the absorbent in vapour absorption system is accompanied by-",o:["Absorption of heat","No thermal effect","Release of heat","Reduction in volume"]},
+      {n:63,q:"In a vapour compression refrigeration system, heat is released in–",o:["compressor","condenser","expansion valve","evaporator"]},
+      {n:64,q:"For ideal refrigerant, the viscosity should be–",o:["High","Low","Moderate","None of these"]},
+      {n:65,q:"The numerical symbol of methane in hydrocarbon refrigerant is–",o:["R-50","R-170","R-290","R-600"]},
+      {n:66,q:"The boiling point of R-11 refrigerant is–",o:["21.77","22.77","23.77","24.77"]},
+      {n:67,q:"Which is used to express the capacitance of the capacitor?",o:["Volts","Ampere","Ohm","Farad"]},
+      {n:68,q:"Which is a type of single phase induction motor?",o:["Split phase induction motor","Shaded pole motor","Capacitor start induction run motor","All of these"]},
+      {n:69,q:"For sheet metal thickness less than 0.4 mm, the allowance for hems/seams should be?",o:["twice the thickness","three times the thickness","four times the thickness","no any allowance"]},
+      {n:70,q:"What is the quantity of carbon in cold chisel?",o:["0.75% to 1.00%","0.70% to 1.00%","0.60% to 0.90%","0.90% to 1.000%"]},
+      {n:71,q:"Which fire extinguisher can be used to extinguish all types of fires?",o:["CTC fire extinguisher","CO₂ fire extinguisher","Dry powder fire extinguisher","All of these"]},
+      {n:72,q:"Air entering through doors/windows/other openings in AC system is termed as",o:["Condensation","Infiltration","Evaporation","Conduction"]},
+      {n:73,q:"In spray washing, if water temp > dry bulb temp of entering air, the air is:",o:["heated and dehumidified","cooled and dehumidified","cooled and humidified","heated and humidified"]},
+      {n:74,q:"Use of evaporator to produce cooling by naturally flowing air is–",o:["Natural convection","Forced convection","Both (a) and (b)","None of these"]},
+      {n:75,q:"A house-hold refrigerator works on:",o:["Vapour absorption cycle","Vapour compression cycle","Carnot cycle","Bell-Coleman cycle"]}
+    ]
+  },
+  49: { title: "Practice Set 49", questions: 75,
+    answers: {1:'b',2:'a',3:'d',4:'d',5:'c',6:'c',7:'b',8:'c',9:'a',10:'a',11:'b',12:'d',13:'c',14:'d',15:'c',16:'b',17:'a',18:'b',19:'d',20:'a',21:'b',22:'d',23:'a',24:'b',25:'a',26:'d',27:'b',28:'b',29:'c',30:'c',31:'a',32:'d',33:'c',34:'a',35:'b',36:'a',37:'c',38:'a',39:'a',40:'c',41:'d',42:'a',43:'a',44:'d',45:'c',46:'d',47:'c',48:'d',49:'b',50:'b',51:'a',52:'c',53:'b',54:'d',55:'c',56:'d',57:'b',58:'c',59:'a',60:'b',61:'a',62:'b',63:'d',64:'c',65:'a',66:'c',67:'b',68:'a',69:'c',70:'a',71:'b',72:'d',73:'b',74:'a',75:'d'},
+    qs: [
+      {n:1,q:"S.I. unit of specific enthalpy of a moist air is–",o:["kJ/kg","J/kg","J/g","J-kg"]},
+      {n:2,q:"The ratio of full discharge pressure to full suction pressure is called–",o:["Compression ratio","Compression efficiency","Compressor capacity","None of these"]},
+      {n:3,q:"The refrigerant used in reciprocating compressor is:",o:["Ammonia","Freon 12","Methyl chloride","All of these"]},
+      {n:4,q:"Which of the following is a heat insulating material used in refrigerators?",o:["Polyurethane foam","Calcium silicate","Rock wool","All of the above"]},
+      {n:5,q:"The equation for ideal gas is–",o:["P/V = nRT","P/n = VRT","PV = nRT","P/RV = nT"]},
+      {n:6,q:"Chemical spray on finned condenser of a window AC is used to–",o:["Correct the bends of the fins","Remove the rust of the fins","Flush out the condenser tubes","Blow the dust from the fins"]},
+      {n:7,q:"Which of the following causes difficulty in maintaining constant refrigerator temperature?",o:["Electronic detector method","Soap lather method","Halide torch method","None of these"]},
+      {n:8,q:"The objective of cleaning evaporator coils is to–",o:["Increase evaporator's life","Reduce air quality","Increase heat transfer capacity","Reduce power consumption"]},
+      {n:9,q:"Identify the 'X' part of the compaction refrigeration cycle (top coiled part) in the figure–",o:["Evaporator","Expansion valve","Condenser","Compressor"]},
+      {n:10,q:"Difference of potential between an object and earth is called–",o:["Live","Dead","Earth Electrode","Resistance area"]},
+      {n:11,q:"Which circuit is forward bias n-p junction diode? (positive terminal connected to p-side)",o:["Circuit (a)","Circuit (b)","Circuit (c)","None of these"]},
+      {n:12,q:"Which of the following is a process of refrigeration?",o:["Cooling a hot casting from 1000°C to room temp","Cooling water by mixing with ice block","Cooling oneself by sitting under a fan","Cooling tea by leaving it on the dining table"]},
+      {n:13,q:"Which equipment is used to check brine density in ice candy plant?",o:["Rotameter","Velometer","Hydrometer","Hygrometer"]},
+      {n:14,q:"Important component of water cooled air conditioner is–",o:["evaporator","condenser","cooling tower","all of these"]},
+      {n:15,q:"Frost free refrigerator works–",o:["On air circulating system","On vapour absorption","On compression system","On evacuating system"]},
+      {n:16,q:"How much power motor is required to rotate blower of remote type condenser?",o:["1–2 HP","0.1–0.2 HP","1–5 HP","0.5–1 HP"]},
+      {n:17,q:"In a frost-free refrigerator, typical interval of a defrost cycle is?",o:["once in 12 hours","once in 24 hours","once in 36 hours","once in 48 hours"]},
+      {n:18,q:"Minimum size of plate electrode used in plate earthing should be?",o:["12.5 × 12.5 cm","22.5 × 22.5 cm","32.5 × 32.5 cm","60 × 60 cm"]},
+      {n:19,q:"Which is used for flow of electric current between welding cable and electrode?",o:["Cable plug","Earth clamp","Earth cable","Electrode holder"]},
+      {n:20,q:"Match: A-Portable drilling-For light works; B-Sensitive drilling-Automatic feed; C-Pillar drilling-For heavy equipment",o:["A-3, B-1, C-2","A-2, B-1, C-3","A-3, B-2, C-1","A-2, B-3, C-1"]},
+      {n:21,q:"Automobile A.C. compressor is operated through–",o:["radiator","engine","wheels","all of these"]},
+      {n:22,q:"Chilled pipe for high pressure high line volume is made of–",o:["Galvanized iron","PVC","Mild steel","None of these"]},
+      {n:23,q:"What is the chemical name of freon-21?",o:["Mono-chloride tri-fluoro methane","Di-chloride di-fluoro methane","Di-chloride mono-fluoro methane","None of these"]},
+      {n:24,q:"In an electric circuit, due to excess ______ the fuse blows.",o:["Voltage due to short circuit","Current flow due to short circuit","Voltage due to open circuit","Current flow due to open circuit"]},
+      {n:25,q:"Statement I: In horizontal and tube condenser, driver tube thickness is 10–15 mm. Statement II: It is also known as closed shell and tube. Which is correct?",o:["Statement I is correct","Statement II is correct","Both I and II are correct","Both I and II are incorrect"]},
+      {n:26,q:"Which is the correct wave form of DC?",o:["Waveform (a)","Waveform (b)","Waveform (c)","Straight line (d)"]},
+      {n:27,q:"At no load condition the power factor of 3-phase induction motor will be–",o:["High","Low","Moderate","Negative"]},
+      {n:28,q:"Which fuel gas is used for deep water cutting?",o:["Acetylene","Hydrogen","LPG","Methane"]},
+      {n:29,q:"Which type of filing is shown (file moving in circular motion)?",o:["Cross","Draw filing","Straight filing","Curve filing"]},
+      {n:30,q:"Overheated water pump bearing treatment is?",o:["Run it slowly","Add water","Apply grease","Add thermostat"]},
+      {n:31,q:"Which device maintains the flow of air in the indoor unit?",o:["Blower","Fan","Evaporator","Filter"]},
+      {n:32,q:"Between which two parts is the liquid receiver applied?",o:["Expansion valve and evaporator","Compressor and evaporator","Compressor and condenser","Condenser and expansion valve"]},
+      {n:33,q:"The temperature sensing device in an indoor unit is -",o:["blower","Evaporator coil","Thermostat valve","None of these"]},
+      {n:34,q:"Animometer is a device used to measure–",o:["RPM of motor shaft","Atmospheric pressure","Very low temperature","Wind velocity"]},
+      {n:35,q:"Evaporator used in home freezers, ice cream cabinets etc. is–",o:["Plate evaporator","Finned evaporator","Shell and tube evaporator","Shell and coil evaporator"]},
+      {n:36,q:"In which type of liquid receiver do inlet and outlet valves act on the same port?",o:["Surge type receiver","Flow throw receiver","Pump receiver","Horizontal receiver"]},
+      {n:37,q:"The condensing medium used in evaporative condenser is–",o:["Air only","Water only","Both air and water","None of these"]},
+      {n:38,q:"Slag wool is–",o:["organic fibrous material","inorganic insulating material","cellular material","natural insulating material"]},
+      {n:39,q:"Proper operation of a capillary tube in domestic refrigerator depends on–",o:["Shape of tube","Atmospheric pressure","temperature of refrigerator","Moisture content of the refrigerator"]},
+      {n:40,q:"The function of an accumulator is–",o:["to remove the heat of the room","to control the flow of refrigerant","to equate the suction and discharge","to prohibit the liquid entry into the compressor"]},
+      {n:41,q:"Which lubricant is used in HFC-134A system?",o:["Mineral oil","Mobile oil","Olive oil","PAG oil"]},
+      {n:42,q:"If HFCs 134a leaks, it displaces air because–",o:["it is lighter than air","it is heavier than air","it is odorless gas","it is easier than removing"]},
+      {n:43,q:"The other name of delta connection–",o:["mesh connection","loop connection","Y connection","X connection"]},
+      {n:44,q:"The value of capacitor in single phase capacitor start small motor will be–",o:["100 Farad","10 Farad","Less than 100 micro farad","Less than 100 pico farad"]},
+      {n:45,q:"The direction of rotation of a capacitor start motor can be reversed by–",o:["Changing the connection of supply terminals","Changing the combination of supporting turns only","Changing connections of either main or auxiliary winding","Changing the connections of main winding only"]},
+      {n:46,q:"Which flame does NOT perform any chemical reaction?",o:["Neutral flame","Oxidized flame","Carburized flame","Reducing flame"]},
+      {n:47,q:"What is done to provide the capacity of the containers?",o:["The edges are protected","The edges are folded","Both (a) and (b)","None of the above"]},
+      {n:48,q:"The least count of a vernier caliper is–",o:["0.10 mm","0.01 mm","0.05 mm","0.02 mm"]},
+      {n:49,q:"The function of air diffuser in air conditioning is:",o:["To clean air","To make air flow in desired pattern","Relative humidity control","Reducing the noise of air conditioner"]},
+      {n:50,q:"Operating a packed chiller, _______ cost comes.",o:["Maximum","Minimum","Both (a) and (b)","None of these"]},
+      {n:51,q:"Under which category are polyurethane ducts categorized on the basis of safety?",o:["Category-I","Category-II","Category-III","Category-IV"]},
+      {n:52,q:"Temperature not affected by direct radiation and moisture is known as–",o:["Wet bulb temperature","Dew point temperature","Web bulb depression","Dry bulb temperature"]},
+      {n:53,q:"Which component's main function is to move the refrigerant?",o:["Compressor","Evaporator","Expansion valve","Condensing coil"]},
+      {n:54,q:"Cold storage plant can use __________ as refrigerant",o:["Ammonia","Air","Water","All of these"]},
+      {n:55,q:"The temperature of internal cabinet of a bottle cooler is–",o:["0°C - 4.5°C","4.5°C - 7°C","7°C - 14°C","4.5°C - 14°C"]},
+      {n:56,q:"Cooling water treatment formulations are designed to–",o:["Minimize scale formation","Minimize corrosion","Help deposition control","All of above"]},
+      {n:57,q:"Arrangement for keeping water cool under recirculation system?",o:["Cold storage","Cooling tower","Deep freeze","None of these"]},
+      {n:58,q:"Function of evaporator in car air conditioning?",o:["The temperature of air has to be reduced","Temperature and humidity both have to be reduced","both (a) and (b)","neither (a) nor (b)"]},
+      {n:59,q:"The shape of evaporator used in window air conditioner is–",o:["fin type","coil type","spiral","none of these"]},
+      {n:60,q:"Which process is carried out while defrosting hot gas?",o:["Close the solenoid valve","Starting the compressor","Open the water spray","Starting the heater"]},
+      {n:61,q:"In frost free refrigerator, bimetallic heater is used for–",o:["Defrosting","Even cooling in cabinet","Control auto defrost","Control air distribution"]},
+      {n:62,q:"What is fitted in front of capillary tube to prevent entry of impurities?",o:["Evaporator","Drier","Condenser","Compressor"]},
+      {n:63,q:"The condenser removes ________ from the refrigerant?",o:["Sensible heat only","Super heat only","Latent heat only","Sensible heat and latent heat"]},
+      {n:64,q:"Main components of vapour compression refrigeration in correct serial–",o:["compressor-evaporator-condenser-expansion valve","compressor-condenser-evaporator-expansion valve","compressor-condenser-expansion valve-evaporator","compressor-evaporator-expansion valve-condenser"]},
+      {n:65,q:"In a domestic refrigerator, there is no–",o:["Sight glass","Drier","Refrigerant","Evaporator"]},
+      {n:66,q:"Which ministry of Indian Government makes rules related to ozone layer?",o:["Ministry of energy","Ministry of water resources","Ministry of environment and forest","Defense ministry"]},
+      {n:67,q:"In which year was India included in Montreal protocol?",o:["1990","1992","1994","1996"]},
+      {n:68,q:"NPN transistors are preferred over PNP because–",o:["they have high switching speed","they have high range of operating temperature","the positive supply rail is easy to use","none of these"]},
+      {n:69,q:"The phase difference between running winding and starting winding is–",o:["0°","45°","90°","180°"]},
+      {n:70,q:"Which type of hem is shown in the figure (single flat fold)?",o:["Single hem","Double hem","Wired hem","Locked hem"]},
+      {n:71,q:"Reamer is a device used for–",o:["cutting and drilling the material","finishing material after drilling and cutting","internal threading","external threading"]},
+      {n:72,q:"Statement I: CO₂ gas helps in combustion. Statement II: Oxygen gas does not help in burning. Which is correct?",o:["Statement I is correct","Statement II is correct","Both I and II are correct","Both I and II are incorrect"]},
+      {n:73,q:"Evaporator is installed in the refrigeration system–",o:["Before expansion valve","After expansion valve","Before the condenser","After compressor"]},
+      {n:74,q:"The flow of refrigerant in a dry expansion evaporator is controlled by whom?",o:["Expansion valve","Feature bulb","Suction line","None of these"]},
+      {n:75,q:"Which is a secondary refrigerant, when used above 0°C?",o:["Sodium chloride","Brines","Glysols","Water"]}
+    ]
+  },
+  50: { title: "Practice Set 50", questions: 75,
+    answers: {1:'c',2:'c',3:'a',4:'c',5:'b',6:'d',7:'b',8:'d',9:'a',10:'d',11:'b',12:'a',13:'c',14:'a',15:'c',16:'c',17:'c',18:'b',19:'c',20:'b',21:'c',22:'d',23:'c',24:'a',25:'a',26:'b',27:'d',28:'d',29:'b',30:'a',31:'c',32:'d',33:'b',34:'c',35:'c',36:'d',37:'d',38:'a',39:'b',40:'b',41:'c',42:'b',43:'b',44:'a',45:'b',46:'a',47:'a',48:'c',49:'a',50:'d',51:'d',52:'b',53:'b',54:'b',55:'d',56:'d',57:'c',58:'a',59:'d',60:'d',61:'b',62:'b',63:'c',64:'c',65:'b',66:'c',67:'b',68:'a',69:'b',70:'c',71:'c',72:'c',73:'d',74:'a',75:'a'},
+    qs: [
+      {n:1,q:"In construction of drinking water coolers, the water chilling circuit is normally",o:["of the tube-in-tube type","made with refrigerant coiled wound outside a water tank","made with refrigerant coiled wound outside a water storage tank","of the shell-and-tube type"]},
+      {n:2,q:"Chilling circuit are usually in design of cooler for drives:",o:["Tube in tube type","Made by wrapping refrigerant coil around water tank","Made by wrapping refrigerant coil around water storage tank","Shell and tube type"]},
+      {n:3,q:"Permissible temperature of drinking water?",o:["42°F to 45°F","38°F to 40°F","32°F to 35°F","None of these"]},
+      {n:4,q:"Which is the earliest method of making refrigeration (Egyptians keeping water pots on rooftops)?",o:["HVAC","Cascade","Ice refrigeration","Absorption refrigeration"]},
+      {n:5,q:"Where is the side glass of ice candy plant installed?",o:["In suction line","In liquid line","In delivery line","In discharge line"]},
+      {n:6,q:"Which arrangement avoids water carry over with cooled air in air-washer?",o:["Basin","Filter","Blower","Eliminator"]},
+      {n:7,q:"Frost-free refrigerator door open, bulb does not burn out. What is the possible reason?",o:["Very fast in the evaporator","Door switch getting stuck","Filler bulb not in place","Faulty thermostat"]},
+      {n:8,q:"Operating pressure for refrigerating units using R-12 as a refrigerant is:",o:["2 bar","30 bar","15 bar","8 bar"]},
+      {n:9,q:"Reason for presence of moisture in frost-free system?",o:["Improper Evacuation","Low oil level","Shortage of gas","Over charge"]},
+      {n:10,q:"Which earth connection method is shown in the figure (pipe with plates underground)?",o:["Rod earthing method","Plate earthing method","Water tap earthing method","pipe earthing method"]},
+      {n:11,q:"Which welding set is used where electric power source is not available?",o:["Rectifier welding set","Engine generator welding set","Transformer welding set","Motor generator welding set"]},
+      {n:12,q:"In radial drilling machine, small notes in the table are–",o:["Circular","Triangle","Horizontal","Vertical"]},
+      {n:13,q:"Which A.C. components are present near the engine of automobile A.C.?",o:["Condenser","Compressor","Both (a) and (b)","Evaporator"]},
+      {n:14,q:"__________ lives near/to evaporator in air conditioner.",o:["Chilled pipeline","Condensing coil","Duct","None of these"]},
+      {n:15,q:"Statement I: License for import-export of ozone depleting substances is mandatory. Statement II: Per zone rule 2000, trade only from countries in Section 6. Which is correct?",o:["Statement I is correct","Statement II is correct","Both I and II are correct","Both I and II are incorrect"]},
+      {n:16,q:"What type of effect does current produce when passing through the electrolyte?",o:["Magnetic effect","Thermal effect","Chemical effect","Optical effect"]},
+      {n:17,q:"The commonly used refrigerant in domestic refrigerators is:",o:["CO₂","Nitrogen","R 134a","Ammonia"]},
+      {n:18,q:"The presence of electric current is felt–",o:["By shining","From the effect produced","By electric shock","By the sound of crackling"]},
+      {n:19,q:"The speed of AC motor depends on:",o:["Frequency","Number of poles","Both (a) and (b)","None of the above"]},
+      {n:20,q:"If the length of inner core of the flame is 'L' mm, distance of metal from the tip should be–",o:["L mm","L+2 mm","L+4 mm","L+6 mm"]},
+      {n:21,q:"The part 'A' of the file (at 70° angle) –",o:["Shant","Shoulder","Tang","Torque"]},
+      {n:22,q:"In which condition does the pump make more noise?",o:["When foundation bolt is loose","Due to rubbing of propellers","If alignment is not correct","All of the above"]},
+      {n:23,q:"Statement I: Split AC has separate indoor and outdoor units. Statement II: Split AC uses two fan motors. Which is correct?",o:["Statement I is correct","Statement II is correct","Both I and II are correct","Both I and II are incorrect"]},
+      {n:24,q:"Ammonia is used with",o:["Reciprocating refrigerant compressors","Centrifugal refrigerant compressors","Axial flow refrigerant compressors","All of these"]},
+      {n:25,q:"The device controlled by thermostat valve is:",o:["Compressor","Condenser","Evaporator","Blower"]},
+      {n:26,q:"Halide torch is an instrument used to find out–",o:["Pressure","Leak","Temperature","Flow of air"]},
+      {n:27,q:"What is the function of an evaporator pressure regulator?",o:["Keeps pressure up for system need","Maintains compressor inlet pressure","Monitors evaporator temperature","All of these"]},
+      {n:28,q:"Requirements for refrigerants should be",o:["Non-poisonous","Non-explosive","Non-corrosive","All of these"]},
+      {n:29,q:"The part of a screw compressor which has lobes is called–",o:["Male Rotor","Driver Rotor","Driven Rotor","Both (a) and (b)"]},
+      {n:30,q:"Which insulating material is used in refrigerators nowadays?",o:["PUF","Fiber glass","Cork sheet","Glass wool"]},
+      {n:31,q:"Which type of expansion valve is used in low capacity units like bottle coolers?",o:["Hand expansion valve","Automatic expansion valve","Capillary tube","TXV"]},
+      {n:32,q:"Flooded evaporator has to be fitted with–",o:["accumulator","float valve","liquid eliminator","all of these"]},
+      {n:33,q:"Colour of flame when refrigeration system leaks (halide torch method) is–",o:["yellow","light blue","light yellow","purplish blue"]},
+      {n:34,q:"Typical temperature difference between refrigerant and entering water in water-cooled condensers is–",o:["3°C to 4°C","14°C to 17°C","8°C to 10°C","20°C to 30°C"]},
+      {n:35,q:"The other name of star connection–",o:["mesh connection","loop connection","Y connection","X connection"]},
+      {n:36,q:"Which motor is used in domestic refrigerators?",o:["DC series motor","DC shunt motor","Universal motor","Single phase induction motor"]},
+      {n:37,q:"Starting torque of capacitor start induction motor:",o:["Is zero","Decreases","Is equal to rated torque","Is more than rated torque"]},
+      {n:38,q:"At what angle is the filler rod kept in gas welding?",o:["30°-40°","45°-55°","55°-65°","90°-95°"]},
+      {n:39,q:"With the help of which the sheet is locked after seaming?",o:["Seamer","Grover","Hammer","None of these"]},
+      {n:40,q:"To convert linear motion of dial test indicator plunger to rotary motion of pointer, which mechanism is used?",o:["quick return mechanism","Rack and pinion mechanism","Screw thread mechanism","Hydraulic mechanism"]},
+      {n:41,q:"An instrument that uses the difference in readings of wet bulb and dry bulb thermometers to measure humidity is called:",o:["Tachometer","Rotometer","Psychrometer","PH-meter"]},
+      {n:42,q:"Which chiller is of medium range and useful for buildings?",o:["Centrifugal chiller","Packaged chiller","Reciprocating chiller","All of these"]},
+      {n:43,q:"Which type of duct is used in equal friction method for efficient ducting?",o:["Circular","Rectangular","Cylindrical","All of these"]},
+      {n:44,q:"In heating and humidification process, the WBT of the air–",o:["Increases","Decreases","Remains constant","Can either increase or decrease"]},
+      {n:45,q:"In ventilation and AC system, pressure difference is created by ______",o:["Thermostat","Flaps","Plenum","None of the above"]},
+      {n:46,q:"The external cabinet of AHU is made of:",o:["GI sheet","steel","Aluminium","None of these"]},
+      {n:47,q:"Which item CANNOT be stored in its frozen state in cold storage?",o:["Vegetables","Chicken","Meat","Fish"]},
+      {n:48,q:"The appropriate refrigerant used in a 2 ton water cooler is–",o:["ammonia","SO₂","R-22","both (a) and (b)"]},
+      {n:49,q:"Water in an open recirculating cooling system is corrosive because it is saturated with–",o:["Oxygen","Hydrogen","Nitrogen","Carbon dioxide"]},
+      {n:50,q:"Water falling from the spray header of the cooling tower is air cooled by–",o:["Cold air","Natural air","Fan or blower","All of these"]},
+      {n:51,q:"Which of the following effects AC unit when the speed of the car changes?",o:["It does not allow uniform temperature","Power of unit increases and decreases with car speed","At low speed compressor cannot circulate enough gas","All of the above"]},
+      {n:52,q:"Which arrangement avoids mixing of conditioned air and return air?",o:["Bitumen","False ceiling","Fiber glass sheet","Thermocol sheet"]},
+      {n:53,q:"On which mode should the AC be operated to protect it from moisture?",o:["Fan mode","Defrost mode","Cooling mode","None of these"]},
+      {n:54,q:"In frost free refrigerator, which component controls thermostat and defrost heater?",o:["Evaporator fan","Defrost timer","Relay","OLP"]},
+      {n:55,q:"__________ is a part of pump down system.",o:["Solenoid valve","Thermostat valve","Low pressure controller","All of these"]},
+      {n:56,q:"Which device is fitted between condenser and capillary inlet?",o:["Hot gas muffler","Oil separator","Heat Exchanger","Drier"]},
+      {n:57,q:"Evaporator is known by which name–",o:["compressor","evaporation unit","freezer","heating unit"]},
+      {n:58,q:"Frost is formed on cooling coils due to–",o:["Moisture present in evaporator","Moisture present in compressor","Moisture present in condenser","None of these"]},
+      {n:59,q:"The chemical name of R-600 refrigerant is–",o:["methane","ethane","propane","butane"]},
+      {n:60,q:"The critical temperature of R-23 refrigerant is–",o:["23.6","25.6","28.8","26.6"]},
+      {n:61,q:"The S.I. unit of electric resistance is–",o:["Volt","Ohm","Watt","Ampere"]},
+      {n:62,q:"The efficiency of induction motor is–",o:["From 50% to 60%","From 80% to 90%","From 30% to 40%","Up to 100%"]},
+      {n:63,q:"The calculated length 'G' of the grooved joint shown in the figure is–",o:["11.5 mm","12.5 mm","13.5 mm","14.0 mm"]},
+      {n:64,q:"The thickness of GI sheet is measured by–",o:["plug gauge","vernier height gauge","sheet gauge","feeler gauge"]},
+      {n:65,q:"In which of the following, cold water shower is used to extinguish the fire?",o:["Kerosene oil","Paper","LPG gas","Electric wire"]},
+      {n:66,q:"Which types of vapour pressure line is drawn on a psychrometric chart?",o:["oblique line","straight oblique","horizontal","none of these"]},
+      {n:67,q:"TDC of piston, the position of top of piston and bottom of the plate is called–",o:["Clearance volume","Clearance pocket","Volumetric efficiency","Wet compression"]},
+      {n:68,q:"Piston is related to which compressor?",o:["Reciprocating","Centrifugal","Rotary","Gear"]},
+      {n:69,q:"An ideal refrigerant's boiling point should be–",o:["High","Low","Medium","None of these"]},
+      {n:70,q:"In psychrometry chart, wet bulb temperature lines are–",o:["parallel with respect to each other","equidistant with respect to each other","at unequal distance with respect to each other","perpendicular to each other"]},
+      {n:71,q:"In a side by side refrigerator, condenser is cooled by–",o:["Sweating water","Natural air","Fan","Air and condensate water"]},
+      {n:72,q:"Statement I: Smallest leakage detected by electronic detector method. Statement II: Based on dielectric difference of gases. Which is true?",o:["Statement I is true","Statement II is true","Both I and II are true","Both I and II are false"]},
+      {n:73,q:"The compressor in a deep freezer compresses refrigerant vapours. The other function is–",o:["To equalize pressure in the system","To circulate refrigerant in the system","To cause refrigeration effect","To cool products kept in the deep freezer"]},
+      {n:74,q:"Name the part 'X' in the gas throttling refrigeration system shown in figure–",o:["Stomatal plug","Insulated wall","Cooling place","None of these"]},
+      {n:75,q:"Low boiling point refrigerant compressors",o:["Reciprocating compressors","Large centrifugal pump","Large axial flow rotary pump","All of these"]}
+    ]
+  },
+  51: { title: "Practice Set 51", questions: 75,
+    answers: {1:'b',2:'b',3:'b',4:'a',5:'b',6:'c',7:'d',8:'b',9:'a',10:'d',11:'a',12:'b',13:'d',14:'a',15:'b',16:'b',17:'b',18:'b',19:'c',20:'d',21:'c',22:'c',23:'d',24:'a',25:'d',26:'d',27:'d',28:'c',29:'b',30:'b',31:'a',32:'a',33:'a',34:'a',35:'b',36:'a',37:'a',38:'d',39:'a',40:'a',41:'b',42:'a',43:'b',44:'b',45:'d',46:'c',47:'d',48:'d',49:'b',50:'b',51:'a',52:'d',53:'a',54:'d',55:'c',56:'d',57:'b',58:'c',59:'a',60:'b',61:'a',62:'b',63:'c',64:'c',65:'a',66:'c',67:'b',68:'a',69:'c',70:'b',71:'b',72:'d',73:'d',74:'a',75:'d'},
+    qs: [
+      {n:1,q:"Which machine is used to cool beverages in bottles?",o:["Water cooler","Bottle cooler","Deep freezer","None of the above"]},
+      {n:2,q:"Which machine is used to cool beverages in bottles? (2nd)",o:["Water cooler","Bottle cooler","Deep freezer","None of the above"]},
+      {n:3,q:"By which of the following is insulation done in refrigeration system?",o:["Thermocol","Glasswool","Polyurethane foam","Jute"]},
+      {n:4,q:"What is the least expensive cooling system for large buildings?",o:["Chilled water units","Window units","Split units","All above are equally expensive"]},
+      {n:5,q:"Thermal insulating heat is called as–",o:["Good conductor","Bad conductor","Semiconductor","None of these"]},
+      {n:6,q:"What is the main difference between a refrigerator and a freezer?",o:["Freezers have more insulation than refrigerators","Refrigerators have more insulation than freezers","They are the same appliances with different temperature setting","None of the above"]},
+      {n:7,q:"Frost free refrigerators are pressurized _______ before the leak test",o:["Oxygen","Hydrogen","Refrigerant","Dry nitrogen"]},
+      {n:8,q:"Humidity is most commonly measured by:",o:["partial vapour pressure determination","dry and wet bulb temperature measurement","physical expansion","evaporation"]},
+      {n:9,q:"If a constant force F moves a body by a distance s, the work done is–",o:["F × s","F/s","s/F","F + s"]},
+      {n:10,q:"Minimum size of inner diameter of galvanized iron pipe for pipe earthing is–",o:["19 mm","25 mm","32 mm","38 mm"]},
+      {n:11,q:"Which electrode is used in both A.C and D.C welding?",o:["Carbon electrode","Aluminium electrode","Bare metal electrode","Mild steel coated electrode"]},
+      {n:12,q:"The name of part 'X' of the drilling machine (shown in figure) is–",o:["Radial arm","base","spindle head","Feed handle"]},
+      {n:13,q:"Which part of A.C. is installed near the cabin of automobile?",o:["Condenser","Compressor","Both (a) and (b)","Evaporator"]},
+      {n:14,q:"Which Japan-developed system is based on ventilation and AC technology?",o:["VRF system","Chiller system","Both (a) and (b)","None of these"]},
+      {n:15,q:"Ozone depletion potential of the refrigerant CFCs-11 is:",o:["1.05","1.00","0.08","0.05"]},
+      {n:16,q:"The three major effects of the current are-",o:["Giving thermal, magnetic, electric shock","Thermal, magnetic, chemical","Thermal, magnetic, chemical","Chemical, magnetic, electric shock"]},
+      {n:17,q:"Relative humidity of air when dry bulb, wet bulb and dew point temperatures are same?",o:["80%","100%","90%","70%"]},
+      {n:18,q:"When current affects a conductor, it gets heated. This is–",o:["Magnetic effect","Thermal effect","Chemical effect","Electrostatics effect"]},
+      {n:19,q:"Saturated atmospheric air means–",o:["Air at saturation temperature","Mixture of air and saturated steam","Air which holds maximum possible vapour","None of these"]},
+      {n:20,q:"Which of the following is an AC motor?",o:["Slip ring motor","Squirrel cage induction motor","Synchronous motor","All of the above"]},
+      {n:21,q:"The correct flame for preheating before cutting is–",o:["Oxidizing flame","Carburizing flame","Neutral flame","Slight carburizing flame"]},
+      {n:22,q:"Hand files are made from–",o:["low carbon steel","medium carbon steel","high carbon steel","high chromium steel"]},
+      {n:23,q:"Volute pump is among which type of pump?",o:["Reciprocating pump","Air lift pump","Jet pump","Centrifugal pump"]},
+      {n:24,q:"Match: A-Evaporator-Indoor Unit; B-Compressor-Outdoor Unit; C-Condenser; D-Blower",o:["A-1, B-2, C-2, D-1","A-1, B-1, C-2, D-1","A-2, B-1, C-1, D-2","A-2, B-2, C-1, D-1"]},
+      {n:25,q:"Processes for air-conditioning in summer (hot and humid condition) are:",o:["Heating and humidification","Heating and dehumidification","Cooling and humidification","Cooling and dehumidification"]},
+      {n:26,q:"Split AC has air presence in system. Where will it be collected?",o:["Capillary tube","Condenser","Suction line","Evaporator"]},
+      {n:27,q:"In refrigeration system moisture can be converted to ice–",o:["In high pressure zone","In low pressure zone","High temperature zone","In low temperature zone"]},
+      {n:28,q:"The other name of a female rotor in a screw compressor is–",o:["Male Rotor","Driver Rotor","Driven Rotor","Drived Rotor"]},
+      {n:29,q:"Sensible heat = 30 kJ/s, latent heat = 20 kJ/s. Sensible heat factor = ?",o:["0.3","0.6","0.67","1.5"]},
+      {n:30,q:"The part of a screw compressor to which the rotor is attached is called–",o:["Suction","Housing","Discharge","None of these"]},
+      {n:31,q:"Match: A-Polyurethene-170; B-Thermocol-35; C-Fiber-20; D-cork board-35 (density kg/m³)",o:["A-1,B-2,C-3,D-4","A-4,B-3,C-2,D-1","A-1,B-3,C-4,D-2","A-4,B-2,C-3,D-1"]},
+      {n:32,q:"What type of float valve is shown in the following figure?",o:["Low side float valve","High side float valve","Medium side float valve","None of these"]},
+      {n:33,q:"The thermostatic expansion valve is also called–",o:["constant pressure valve","constant temperature valve","constant superheat valve","none of these"]},
+      {n:34,q:"The absorber used in HFC134A system is–",o:["molecular sieves","silica gel","activated alumina","calcium oxide"]},
+      {n:35,q:"The suitable substitute of R-12 is–",o:["R-22","R-134a","CCl₂F₂","CFCs refrigerant"]},
+      {n:36,q:"The inductor used in radio frequency is–",o:["air core inductor","iron core inductor","ferrite core inductor","variable inductor"]},
+      {n:37,q:"The centrifugal switch in a single phase motor _______ of the motor.",o:["disconnects auxiliary winding","reconnects main winding","disconnects main winding","reconnects auxiliary winding"]},
+      {n:38,q:"Which method is used in the welding of steel pipes?",o:["Vertical welding","Overhead welding","Flat position welding","Linde welding"]},
+      {n:39,q:"Which is the process of cutting thicker sheets?",o:["shearing","drawing","banding","squarzing"]},
+      {n:40,q:"Ratchet stop in the micrometer helps to–",o:["Control the pressure","Lock the spindle","Adjust zero error","Hold the work piece"]},
+      {n:41,q:"Which saving is given highest priority while installing a centralized air conditioner?",o:["Water","Electricity","Oil","None of these"]},
+      {n:42,q:"Which type of direct system requires less ventilation?",o:["Packaged","Chiller","Split","None of these"]},
+      {n:43,q:"Component to connect two duct lines at right angles is–",o:["duct joint","stack elbow","duct clip","all of these"]},
+      {n:44,q:"How the single phase induction motor shown in figure (with capacitor) is identified?",o:["Split phase induction motor","Capacitor induction motor","Shaded pole motor","Universal motor"]},
+      {n:45,q:"The cooling coil causes change in _________ temperature of air.",o:["WBT","DBT","DPT","Both DBT and WBT"]},
+      {n:46,q:"Chiller is a–",o:["Plate type evaporator","Sheet and tube type evaporator","Finned type evaporator","None of these"]},
+      {n:47,q:"Which methods were adopted to keep food items secure during ancient times?",o:["Food items kept in earth pits","Food items kept at cold places in caves","Food vessels placed in cold water","All of these"]},
+      {n:48,q:"The following refrigerant is NOT used in a water cooler–",o:["ammonia","SO₂","R-22","both (a) and (b)"]},
+      {n:49,q:"Deposition in cooling towers and evaporative condensers is prevented by inhibitors that–",o:["Decrease the solubility of dissolved minerals","Increase the solubility of dissolved minerals","Eliminate the solubility of dissolved minerals","Reverse the solubility of dissolved minerals"]},
+      {n:50,q:"Match: A-Vibrating motor - Tighten/change fan belt; B-Loose fan belt - Lubrication; C-More noise - D-scaling; D-Obstruct pipeline - Tighten foundation bolt",o:["A-4,B-1,C-3,D-2","A-4,B-2,C-1,D-3","A-4,B-1,C-2,D-3","A-4,B-3,C-2,D-1"]},
+      {n:51,q:"Room AC delivers conditioned air to an enclosed space without any–",o:["fan","ducts","blower","air filter"]},
+      {n:52,q:"During hot gas defrosting–",o:["heater is on","water spray will open","compressor will run","solenoid valve will close"]},
+      {n:53,q:"Before leak test, pressurize the Frost free refrigerator with",o:["Oxygen","Hydrogen","Refrigerant","Dry nitrogen"]},
+      {n:54,q:"Which of the following is a single way valve?",o:["Suction valve","Discharge valve","Reed valve","Both (a) and (b)"]},
+      {n:55,q:"Hermetic compressors are used mainly in smaller systems as they–",o:["Yield higher COP","Offer flexibility of using any refrigerant","Do not require frequent servicing","Can be used under different load conditions"]},
+      {n:56,q:"What changes the vapour refrigerant to liquid state?",o:["Evaporator","Compressor","Analyst","Condenser"]},
+      {n:57,q:"Three TR is equivalent to _______ of cooling effect.",o:["5 kJ/s","10 kJ/s","10.5 kW","7 kW"]},
+      {n:58,q:"From which digit does the numeric symbol of inorganic refrigerant start?",o:["5","6","7","8"]},
+      {n:59,q:"In which refrigerant group is carbon dioxide (CO₂) included?",o:["CFC","HCFC","Inorganic group","Hydrocarbon group"]},
+      {n:60,q:"SCR is made of–",o:["germanium","silicon","carbon","none of these"]},
+      {n:61,q:"The meaning of synchronous speed is–",o:["the speed of rotor of induction motor","the speed of synchronous motor","the speed of induction motor at no load","the actual speed of rotating magnetic field"]},
+      {n:62,q:"Which is the name of the special nut shown in the figure (diamond-shaped)?",o:["check nut","Kesil nut","speed nut","grooved nut"]},
+      {n:63,q:"What is used to check the concave and convex surface of the fitting job?",o:["Feeler gauge","Wire gauge","Radius gauge","Height level"]},
+      {n:64,q:"The simplest method of artificial respiration is",o:["Sylvester method","Shaffer's method","Mouth to mouth respiration","None of these"]},
+      {n:65,q:"In what state is water vapour present in the atmosphere?",o:["gaseous","steam","over heated","none of these"]},
+      {n:66,q:"The speed of _______ in per unit time is called compression speed.",o:["Shaft","Piston","Flywheel","None of these"]},
+      {n:67,q:"Which material is used for making piston in domestic compressors?",o:["Steel","Brass","Raw iron (Cast iron)","Aluminium alloy"]},
+      {n:68,q:"Which expansion equipment is used in a domestic refrigerator unit?",o:["Capillary tube","Constant pressure expansion valve","Thermostatic expansion valve","None of the above"]},
+      {n:69,q:"Humidity of air in summer is–",o:["low","normal","high","distinct"]},
+      {n:70,q:"When empty cartons are stacked against the static type condenser at back of a domestic refrigerator–",o:["Evaporator will become frosted too heavily","Unit will cut out on the thermostat","Condensing efficiency will fall and compressor will feel hot","Unit will defrost and refreeze"]},
+      {n:71,q:"Which test is done under special methods of detecting leakage of refrigerator?",o:["Litmus test","Sulphur test","Phenophthlein test","All of these"]},
+      {n:72,q:"The defect of poor condensation in a refrigerator — dust accumulation on fins and tubes. The cause is",o:["Short of gas","Poor pumping","Poor ventilation","Oil present in evaporator"]},
+      {n:73,q:"Which part is NOT essential in absorption refrigeration system?",o:["Absorber","Condenser","Generator","Compressor"]},
+      {n:74,q:"Saturated atmospheric air means–",o:["Air at saturation temperature","Mixture of air and saturated steam","Air which holds maximum possible vapour","None of these"]},
+      {n:75,q:"During sensible heating of air–",o:["DBT remains constant","Relative humidity remains constant","WBT remains constant","Specific humidity remains constant"]}
+    ]
+  }
+};
+
+// ═══════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════
+let state = {
+  currentSet: null,
+  currentQ: 1,
+  answers: {},
+  marked: new Set(),
+  timerInterval: null,
+  timeLeft: 90 * 60,
+  submitted: false,
+  reviewFilter: 'all'
+};
+
+// ═══════════════════════════════════════════════
+// HOME
+// ═══════════════════════════════════════════════
+function buildHome() {
+  const grid = document.getElementById('setsGrid');
+  const scores = JSON.parse(localStorage.getItem('racScores') || '{}');
+  grid.innerHTML = '';
+  [46,47,48,49,50,51].forEach((num, i) => {
+    const set = SETS[num];
+    const score = scores[num];
+    const card = document.createElement('div');
+    card.className = 'set-card';
+    card.style.animationDelay = `${i * 0.08}s`;
+    card.innerHTML = `
+      <div class="card-top">
+        <div class="card-num">${num}</div>
+        <div class="card-badge ${score ? 'attempted' : ''}">${score ? 'Attempted' : 'Not Attempted'}</div>
+      </div>
+      <div class="card-title">Practice Set ${num}</div>
+      <div class="card-sub">Refrigeration & Air Conditioning</div>
+      ${score ? `<div class="card-score">Last Score: ${score.correct}/${score.total} (${score.pct}%)</div>` : ''}
+      <div class="card-meta">
+        <div class="meta-item">📝 <strong>${set.questions}</strong> Questions</div>
+        <div class="meta-item">⏱ <strong>90</strong> Minutes</div>
+        <div class="meta-item">⭐ <strong>1</strong> Mark each</div>
+      </div>
+      <button class="btn-start" onclick="startTest(${num})">Start Test →</button>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+// ═══════════════════════════════════════════════
+// START TEST
+// ═══════════════════════════════════════════════
+function startTest(setNum) {
+  state.currentSet = setNum;
+  state.currentQ = 1;
+  state.answers = {};
+  state.marked = new Set();
+  state.timeLeft = 90 * 60;
+  state.submitted = false;
+
+  const set = SETS[setNum];
+  document.getElementById('examTitle').textContent = set.title;
+  document.getElementById('examSub').textContent = `${set.questions} Questions · 90 Minutes`;
+
+  showPage('examPage');
+  renderQ();
+  buildQGrid();
+  updateSidebarSummary();
+  startTimer();
+}
+
+// ═══════════════════════════════════════════════
+// RENDER QUESTION
+// ═══════════════════════════════════════════════
+function renderQ() {
+  const set = SETS[state.currentSet];
+  const q = set.qs[state.currentQ - 1];
+  const letters = ['a','b','c','d'];
+  const userAns = state.answers[q.n];
+  const total = set.qs.length;
+
+  document.getElementById('examProgressFill').style.width = ((state.currentQ - 1) / total * 100) + '%';
+  document.getElementById('examAnsweredCount').textContent = `${Object.keys(state.answers).length} answered`;
+
+  let optsHTML = q.o.map((opt, i) => {
+    const letter = letters[i];
+    let cls = 'opt-btn';
+    if (state.submitted) {
+      const correct = set.answers[q.n];
+      if (letter === correct) cls += ' correct';
+      else if (userAns === letter && userAns !== correct) cls += ' wrong';
+    } else if (userAns === letter) {
+      cls += ' selected';
+    }
+    return `<button class="${cls}" onclick="selectAnswer(${q.n}, '${letter}')" ${state.submitted ? 'disabled' : ''}>
+      <span class="opt-letter">${letter.toUpperCase()}</span>
+      <span class="opt-text">${opt}</span>
+    </button>`;
+  }).join('');
+
+  document.getElementById('questionArea').innerHTML = `
+    <div class="q-header">
+      <div class="q-label">Question ${state.currentQ} of ${total}</div>
+      <div class="q-marks">+1 Mark</div>
+    </div>
+    <div class="q-text-box">
+      <span class="q-number-tag">${state.currentQ}</span>${q.q}
+    </div>
+    <div class="options-list">${optsHTML}</div>
+    <div class="q-nav-row">
+      <button class="btn-prev" onclick="prevQ()" ${state.currentQ === 1 ? 'disabled' : ''}>← Prev</button>
+      <div style="font-size:13px;color:var(--text3);">${Object.keys(state.answers).length}/${total} answered</div>
+      <button class="btn-next" onclick="nextQ()" ${state.currentQ === total ? 'disabled' : ''}>Next →</button>
+    </div>
+  `;
+
+  buildQGrid();
+}
+
+function selectAnswer(qNum, letter) {
+  if (state.submitted) return;
+  state.answers[qNum] = letter;
+  renderQ();
+  updateSidebarSummary();
+}
+
+function prevQ() {
+  if (state.currentQ > 1) { state.currentQ--; renderQ(); }
+}
+function nextQ() {
+  const total = SETS[state.currentSet].qs.length;
+  if (state.currentQ < total) { state.currentQ++; renderQ(); }
+}
+function goToQ(n) {
+  state.currentQ = n;
+  renderQ();
+}
+
+function toggleMark() {
+  const q = state.currentQ;
+  if (state.marked.has(q)) state.marked.delete(q);
+  else state.marked.add(q);
+  buildQGrid();
+  showToast(state.marked.has(q) ? '⚑ Marked for review' : 'Mark removed');
+}
+
+// ═══════════════════════════════════════════════
+// Q GRID
+// ═══════════════════════════════════════════════
+function buildQGrid() {
+  const set = SETS[state.currentSet];
+  const grid = document.getElementById('qGrid');
+  grid.innerHTML = '';
+  set.qs.forEach(q => {
+    const div = document.createElement('div');
+    const isAnswered = state.answers[q.n] !== undefined;
+    const isMarked = state.marked.has(q.n);
+    const isCurrent = state.currentQ === q.n;
+    let cls = 'q-dot';
+    if (state.submitted) {
+      const correct = set.answers[q.n];
+      if (state.answers[q.n] === correct) cls += ' correct';
+      else if (state.answers[q.n] && state.answers[q.n] !== correct) cls += ' wrong';
+    } else {
+      if (isCurrent) cls += ' current';
+      else if (isMarked) cls += ' marked';
+      else if (isAnswered) cls += ' answered';
+    }
+    div.className = cls;
+    div.textContent = q.n;
+    div.onclick = () => goToQ(q.n);
+    grid.appendChild(div);
+  });
+}
+
+function updateSidebarSummary() {
+  const set = SETS[state.currentSet];
+  const total = set.qs.length;
+  const answered = Object.keys(state.answers).length;
+  const marked = state.marked.size;
+  document.getElementById('sidebarSummary').innerHTML = `
+    <div class="summary-row"><span>Total Questions</span><span>${total}</span></div>
+    <div class="summary-row"><span>Answered</span><span style="color:var(--accent)">${answered}</span></div>
+    <div class="summary-row"><span>Not Answered</span><span style="color:var(--red)">${total - answered}</span></div>
+    <div class="summary-row"><span>Marked for Review</span><span style="color:var(--orange)">${marked}</span></div>
+  `;
+}
+
+// ═══════════════════════════════════════════════
+// TIMER
+// ═══════════════════════════════════════════════
+function startTimer() {
+  clearInterval(state.timerInterval);
+  state.timerInterval = setInterval(() => {
+    state.timeLeft--;
+    updateTimerDisplay();
+    if (state.timeLeft <= 0) {
+      clearInterval(state.timerInterval);
+      showToast('⏰ Time is up! Auto-submitting...');
+      setTimeout(submitExam, 1500);
+    }
+  }, 1000);
+}
+
+function updateTimerDisplay() {
+  const m = Math.floor(state.timeLeft / 60);
+  const s = state.timeLeft % 60;
+  const display = document.getElementById('timerDisplay');
+  display.textContent = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+  display.className = 'timer-display';
+  if (state.timeLeft <= 300) display.className += ' danger';
+  else if (state.timeLeft <= 600) display.className += ' warn';
+}
+
+// ═══════════════════════════════════════════════
+// SUBMIT
+// ═══════════════════════════════════════════════
+function showSubmitModal() {
+  const set = SETS[state.currentSet];
+  const answered = Object.keys(state.answers).length;
+  document.getElementById('submitModalText').textContent = `You have answered ${answered} out of ${set.questions} questions. Unanswered questions will be marked as skipped. Are you sure you want to submit?`;
+  openModal('submitModal');
+}
+
+function submitExam() {
+  clearInterval(state.timerInterval);
+  state.submitted = true;
+  closeModal('submitModal');
+  renderQ();
+  buildQGrid();
+  showResults();
+}
+
+// ═══════════════════════════════════════════════
+// RESULTS
+// ═══════════════════════════════════════════════
+function showResults() {
+  const set = SETS[state.currentSet];
+  const total = set.qs.length;
+  let correct = 0, wrong = 0, skipped = 0;
+
+  set.qs.forEach(q => {
+    const ua = state.answers[q.n];
+    if (!ua) skipped++;
+    else if (ua === set.answers[q.n]) correct++;
+    else wrong++;
+  });
+
+  const pct = Math.round((correct / total) * 100);
+
+  // save
+  const scores = JSON.parse(localStorage.getItem('racScores') || '{}');
+  scores[state.currentSet] = { correct, total, pct, wrong, skipped };
+  localStorage.setItem('racScores', JSON.stringify(scores));
+
+  // update circle
+  const deg = (pct / 100) * 360;
+  const color = pct >= 70 ? 'var(--green)' : pct >= 40 ? 'var(--orange)' : 'var(--red)';
+  document.getElementById('scoreCircle').style.background = `conic-gradient(${color} ${deg}deg, var(--border) ${deg}deg)`;
+  document.getElementById('scorePct').textContent = pct + '%';
+  document.getElementById('scorePct').style.color = color;
+  document.getElementById('resultSetName').textContent = set.title;
+  document.getElementById('resultSetSub').textContent = `Attempted on ${new Date().toLocaleDateString('en-IN', {day:'numeric',month:'short',year:'numeric'})}`;
+  document.getElementById('resultsTitle').textContent = `${set.title} — Results`;
+
+  document.getElementById('resultCards').innerHTML = `
+    <div class="res-card">
+      <div class="res-card-num" style="color:var(--accent)">${correct}</div>
+      <div class="res-card-label">Correct</div>
+    </div>
+    <div class="res-card">
+      <div class="res-card-num" style="color:var(--red)">${wrong}</div>
+      <div class="res-card-label">Wrong</div>
+    </div>
+    <div class="res-card">
+      <div class="res-card-num" style="color:var(--text3)">${skipped}</div>
+      <div class="res-card-label">Skipped</div>
+    </div>
+    <div class="res-card">
+      <div class="res-card-num" style="color:${color}">${pct}%</div>
+      <div class="res-card-label">Score %</div>
+    </div>
+  `;
+
+  renderReviewList('all');
+  showPage('resultsPage');
+}
+
+function renderReviewList(filter) {
+  state.reviewFilter = filter;
+  const set = SETS[state.currentSet];
+  const letters = ['a','b','c','d'];
+  const list = document.getElementById('reviewList');
+
+  const items = set.qs.filter(q => {
+    const ua = state.answers[q.n];
+    const ca = set.answers[q.n];
+    if (filter === 'correct') return ua === ca;
+    if (filter === 'wrong') return ua && ua !== ca;
+    if (filter === 'skipped') return !ua;
+    return true;
+  });
+
+  if (items.length === 0) {
+    list.innerHTML = `<div style="text-align:center;color:var(--text3);padding:2rem;">No questions in this category.</div>`;
+    return;
+  }
+
+  list.innerHTML = items.map(q => {
+    const ua = state.answers[q.n];
+    const ca = set.answers[q.n];
+    const isCorrect = ua === ca;
+    const isSkipped = !ua;
+    const cls = isSkipped ? 'skipped' : isCorrect ? 'correct' : 'wrong';
+    const uaText = ua ? `${ua.toUpperCase()} — ${q.o[letters.indexOf(ua)]}` : '—';
+    const caText = `${ca.toUpperCase()} — ${q.o[letters.indexOf(ca)]}`;
+
+    return `<div class="review-item ${cls}">
+      <div class="review-q-num">Q${q.n}</div>
+      <div class="review-q-text">${q.q}</div>
+      <div class="review-answers">
+        ${isSkipped ? '<span class="skipped-tag">Not Attempted</span>' : `<div class="your-ans">Your Answer: <span class="ans-val">${uaText}</span></div>`}
+        <div class="correct-ans">Correct Answer: <span class="ans-val" style="color:var(--green)">${caText}</span></div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function filterReview(filter, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderReviewList(filter);
+}
+
+function retakeTest() {
+  startTest(state.currentSet);
+}
+
+// ═══════════════════════════════════════════════
+// NAV HELPERS
+// ═══════════════════════════════════════════════
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+function goHome() {
+  clearInterval(state.timerInterval);
+  closeModal('backModal');
+  buildHome();
+  showPage('homePage');
+}
+
+function confirmBack() {
+  if (state.submitted) { goHome(); return; }
+  openModal('backModal');
+}
+
+function openModal(id) { document.getElementById(id).classList.add('open'); }
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+// ═══════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════
+buildHome();
+</script>
+</body>
+</html>

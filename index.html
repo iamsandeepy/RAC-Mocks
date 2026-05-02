@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RAC Quiz Portal</title>
+
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&f[]=boska@500,700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#f7f6f2;
+  --card:#fbfbf9;
+  --accent:#01696f;
+  --accent2:#0c4e54;
+  --text:#28251d;
+  --muted:#6e6b63;
+  --border:#d8d4cc;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  font-family:'Satoshi',sans-serif;
+  background:linear-gradient(180deg,var(--bg),#f1efe9);
+  color:var(--text);
+}
+
+/* NAVBAR */
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px;
+  margin:20px;
+  border-radius:20px;
+  background:rgba(255,255,255,0.7);
+  backdrop-filter:blur(12px);
+  border:1px solid var(--border);
+}
+
+.brand{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+
+.logo{
+  width:40px;height:40px;
+  border-radius:12px;
+  background:linear-gradient(135deg,var(--accent),#3fb3b7);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:white;
+  font-weight:bold;
+}
+
+.brand h1{
+  font-family:'Boska',serif;
+}
+
+/* HERO */
+.hero{
+  max-width:1100px;
+  margin:auto;
+  padding:20px;
+  text-align:center;
+}
+
+.hero h2{
+  font-family:'Boska',serif;
+  font-size:42px;
+  margin-bottom:10px;
+}
+
+.hero p{
+  color:var(--muted);
+  margin-bottom:30px;
+}
+
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:20px;
+}
+
+/* CARD */
+.card{
+  background:var(--card);
+  border-radius:20px;
+  padding:20px;
+  border:1px solid var(--border);
+  transition:0.25s;
+  box-shadow:0 10px 30px rgba(0,0,0,0.05);
+}
+
+.card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 20px 40px rgba(0,0,0,0.1);
+}
+
+.card h3{
+  margin-bottom:10px;
+}
+
+.card p{
+  color:var(--muted);
+  font-size:14px;
+  margin-bottom:15px;
+}
+
+/* BUTTON */
+.btn{
+  display:inline-block;
+  padding:10px 16px;
+  background:var(--accent);
+  color:white;
+  border-radius:999px;
+  text-decoration:none;
+  font-weight:600;
+}
+
+.btn:hover{
+  background:var(--accent2);
+}
+</style>
+
+</head>
+
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <div class="logo">R</div>
+    <div>
+      <h1>RAC Practice</h1>
+      <small>Quiz Portal</small>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <h2>Choose Your Practice Set</h2>
+  <p>Modern quiz interface with multiple RAC practice sets. Select any set to begin your test.</p>
+
+  <div class="grid">
+
+```
+<div class="card">
+  <h3>RAC Sets 11–20</h3>
+  <p>Foundation level questions</p>
+  <a class="btn" href="RAC_Sets_11_to_20.html">Start</a>
+</div>
+
+<div class="card">
+  <h3>RAC Sets 20–25</h3>
+  <p>Intermediate practice</p>
+  <a class="btn" href="rac_sets_20_25.html">Start</a>
+</div>
+
+<div class="card">
+  <h3>Mock Sets 26–30</h3>
+  <p>Exam simulation tests</p>
+  <a class="btn" href="mock_test_sets_26_30.html">Start</a>
+</div>
+
+<div class="card">
+  <h3>Mock 31–33, 41–45</h3>
+  <p>Advanced mixed mock tests</p>
+  <a class="btn" href="rac_mocktest_31_33_to_41_45.html">Start</a>
+</div>
+
+<div class="card">
+  <h3>RAC Sets 31–40</h3>
+  <p>Advanced concept tests</p>
+  <a class="btn" href="RAC_Sets_31_to_40.html">Start</a>
+</div>
+
+<div class="card">
+  <h3>Practice 33–35</h3>
+  <p>Focused revision sets</p>
+  <a class="btn" href="rac_practice_sets_33_35.html">Start</a>
+</div>
+
+<div class="card">
+  <h3>Practice 46-51</h3>
+  <p>Focused revision sets</p>
+  <a class="btn" href="RAC_MockTest_46_to_51.html">Start</a>
+</div>
+```
+
+  </div>
+</section>
+
+</body>
+</html>
